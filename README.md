@@ -26,9 +26,9 @@ At the end of the day, the SLP can access all the sessions' data from their comp
 there they can access statistics and export the data to a local file.
 
 
-## HIPPA
+## HIPAA
 In order to avoid
-[HIPPA](https://www.dhcs.ca.gov/formsandpubs/laws/hipaa/Pages/1.00WhatisHIPAA.aspx) entanglement,
+[HIPAA](https://www.dhcs.ca.gov/formsandpubs/laws/hipaa/Pages/1.00WhatisHIPAA.aspx) entanglement,
 personally identifiable information is explicitly designed out of the app. This includes time-series
 and any information that can be correlated in order to arrive at client identities.
 
