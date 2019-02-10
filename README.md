@@ -10,31 +10,32 @@ This project is a part of GVSU's Web Architectures class. The project specificat
 ## The App
 
 ### Background
-SLPs have to record detailed information during each therapy session, which may include multiple
-patients. One detailed class of information is (TBD GET TERM). TBD is always either 'correct',
-'cueing', or 'incorrect'. It is tedious to record, transfer, and perform statistics on this data.
-This app will simply data recording and automate data transfer and statistics.
+SLPs record detailed information during therapy sessions. A single therapy session could include
+multiple clients each working on a number of separate goals. A client's performance towards each
+goal is tracked by marking each trial as 'correct,' 'incorrect,' or 'cued.' It is tedious to
+record, transfer, and perform statistics on this data when taken by hand. This app will simplify
+data recording and automate data transfer and statistics.
 
 ### Design
-The heart of the app is the service view. This view will have 'correct', 'cueing', and 'incorrect'
-buttons for 1-4 patients in a given session. During the session, the SLP will record data by
-pressing these buttons. The app will give simple feedback during the session: when the minimum
-number of (TDB TERM)s has been met, and (TBD OTHER FEATURES). At the end of the session, the SLP
-presses the 'finished' button and the session is marked complete.
+The heart of the app is the service view. This view will have 'correct,' 'incorrect,' and 'cued'
+buttons for 1-4 clients in a given session. Instead of writing it down, the SLP will record data by
+pressing the appropriate button for each trial. At the end of the session, the SLP
+will press the 'finished' button to mark the session complete.
 
-At the end of the day, the SLP can access all the day's sessions' data from their computer. From
-here they can access statistics and export the data to a local file.
+At the end of the day, the SLP can access all the sessions' data from their computer. From
+there they can access statistics and export the data to a local file.
 
 
 ## HIPPA
 In order to avoid
 [HIPPA](https://www.dhcs.ca.gov/formsandpubs/laws/hipaa/Pages/1.00WhatisHIPAA.aspx) entanglement,
 personally identifiable information is explicitly designed out of the app. This includes time-series
-and any information that can be correlated in order to arrive at patient identities.
+and any information that can be correlated in order to arrive at client identities.
 
 The app database _only_ stores the following data:
-- TBD
-- TBD
+- Session IDs
+- Anonymous client IDs for each session
+- Client data for each session
 
 
 ## Technical Details
