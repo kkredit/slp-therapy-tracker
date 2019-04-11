@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Container from 'react-bootstrap/Container'
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Includes from './Includes.js'
@@ -14,14 +15,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Includes />
-        <Navbar />
+        <Container>
+          <Includes />
+          <Navbar />
 
-        <BrowserRouter>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/history" component={History} />
-          <Route exact path="/session" component={Session} />
-        </BrowserRouter>
+          <BrowserRouter>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/history" component={History} />
+            <Route exact path="/session" component={Session} />
+          </BrowserRouter>
+        </Container>
       </div>
     );
   }
