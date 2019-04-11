@@ -1,0 +1,14 @@
+h2, h3 {
+  text-align: left;
+  clear: left;
+}
+
+p, ol {
+  text-align: left;
+}
+
+.navButton {
+  float: left;
+  clear: right;
+  margin: 4px;
+}
