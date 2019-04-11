@@ -9,12 +9,14 @@ class Home extends React.Component {
       <React.Fragment>
         <h1>SLP Therapy Tracker</h1>
 
+        <Button id="mainButton" variant="primary" size="lg" href="#">
+          Start a session <i className="fa fa-arrow-circle-o-right"/>
+        </Button>
+
         <p>
           This app is designed to ease data collection for Speech and Language Pathologists. Made
           with &lt;3 for Kristen.
         </p>
-
-        <Button className="navButton" href="#">Start a session <i className="fas fa-angle-right"/></Button>
 
         <h3>Setup</h3>
         <ol>
@@ -24,8 +26,12 @@ class Home extends React.Component {
           <li>View historical session data in the "History" page</li>
         </ol>
 
-        <Button className="navButton" variant="outline-primary" href="#">Update Providers</Button>
-        <Button className="navButton" variant="outline-primary" href="#">Update Locations</Button>
+        <Button className="navButton" variant="outline-primary" href="#">
+          Update Providers <i className="fa fa-arrow-circle-right"/>
+        </Button>
+        <Button className="navButton" variant="outline-primary" href="#">
+          Update Locations <i className="fa fa-arrow-circle-right"/>
+        </Button>
       </React.Fragment>
     );
   }

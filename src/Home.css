@@ -7,6 +7,11 @@ p, ol {
   text-align: left;
 }
 
+#mainButton {
+  clear: both;
+  margin: 30px;
+}
+
 .navButton {
   float: left;
   clear: right;
