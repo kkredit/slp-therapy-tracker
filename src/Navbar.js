@@ -10,13 +10,13 @@ class Navbar extends React.Component {
     };
   }
 
-  handleSelect(eventKey) {
-    this.setState({activeTab: eventKey});
-  }
+  // handleSelect(eventKey) {
+  //   this.setState({activeTab: eventKey});
+  // }
 
   render() {
     return (
-      <Nav className="Navbar" variant="pills" activeKey={this.state.activeTab} onSelect={k => this.handleSelect(k)}>
+      <Nav className="Navbar" variant="pills" activeKey={this.state.activeTab}>
         <Nav.Item>
           <Nav.Link eventKey="/" href="/">Home</Nav.Link>
         </Nav.Item>
