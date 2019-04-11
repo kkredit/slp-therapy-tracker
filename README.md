@@ -1,7 +1,8 @@
 
 # SLP Therapy Tracker
 The SLP Therapy Tracker is a tool that simplifies data tracking for Speech and Language Pathologists
-(SLPs). It is a Ruby on Rails-based progressive web app designed to be used on a phone or tablet.
+(SLPs). It is a React-based progressive web app with a Ruby on Rails backend designed to be used on
+a phone or tablet.
 
 This project is a part of GVSU's Web Architectures class. The project specifications are available
 [here](https://cis.gvsu.edu/~kurmasz/Teaching/Courses/W19/CIS658/project.html).
@@ -32,10 +33,13 @@ In order to avoid
 personally identifiable information is explicitly designed out of the app. This includes time-series
 and any information that can be correlated in order to arrive at client identities.
 
-The app database _only_ stores the following data:
-- Session IDs
+The app database only stores the following data:
+- Public SLP information
+- Location names
+- Session times and dates
 - Anonymous client IDs for each session
-- Client data for each session
+- Anonymous client goals for each session
+- Anonymous client data for each session
 
 
 ## Technical Details
