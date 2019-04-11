@@ -5,6 +5,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Includes from './Includes.js'
 import Navbar from './Navbar.js'
 import Home from './Home.js'
+import Providers from './Providers.js'
+import Locations from './Locations.js'
 import History from './History.js'
 import Session from './Session.js'
 
@@ -21,6 +23,8 @@ class App extends Component {
 
           <BrowserRouter>
             <Route exact path="/" component={Home} />
+            <Route exact path="/providers" component={Providers} />
+            <Route exact path="/locations" component={Locations} />
             <Route exact path="/history" component={History} />
             <Route exact path="/session" component={Session} />
           </BrowserRouter>

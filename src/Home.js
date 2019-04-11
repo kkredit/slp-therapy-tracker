@@ -9,7 +9,7 @@ class Home extends React.Component {
       <React.Fragment>
         <h1>SLP Therapy Tracker</h1>
 
-        <Button id="mainButton" variant="primary" size="lg" href="#">
+        <Button id="mainButton" variant="primary" size="lg" href="/session">
           Start a session <i className="fa fa-arrow-circle-o-right"/>
         </Button>
 
@@ -26,10 +26,10 @@ class Home extends React.Component {
           <li>View historical session data in the "History" page</li>
         </ol>
 
-        <Button className="navButton" variant="outline-primary" href="#">
+        <Button className="navButton" variant="outline-primary" href="/providers">
           Update Providers <i className="fa fa-arrow-circle-right"/>
         </Button>
-        <Button className="navButton" variant="outline-primary" href="#">
+        <Button className="navButton" variant="outline-primary" href="/locations">
           Update Locations <i className="fa fa-arrow-circle-right"/>
         </Button>
       </React.Fragment>
