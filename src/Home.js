@@ -32,6 +32,15 @@ class Home extends React.Component {
         <Link className="navButton btn btn-outline-primary" to="/locations">
           Update Locations <i className="fa fa-arrow-circle-right"/>
         </Link>
+
+        <div id="disclaimer">
+          <h3>Disclaimer</h3>
+          <p>
+            This app is a class project. There is no authentication. The user is solely responsible
+            for all information that is uploaded to this site.
+          </p>
+        </div>
+
       </React.Fragment>
     );
   }
