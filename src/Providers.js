@@ -10,6 +10,10 @@ import './Providers.css'
 
 const API_BASE = 'http://localhost:8000';
 
+function getClearFormId(currentId) {
+  return (currentId === "999999") ? "888888" : "999999";
+}
+
 class ProviderForm extends React.Component {
   constructor(props) {
     super(props);
@@ -135,11 +139,6 @@ class ProviderForm extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log("in handleInputChange");
-    console.log(target);
-    console.log(target.value);
-    console.log(target.name);
-    console.log("setting " + name + " to " + value);
     this.setState({
       [name]: value
     });
@@ -166,7 +165,8 @@ class ProviderForm extends React.Component {
   }
 
   handleCancel(event) {
-    this.props.onCancel("new", {fname:"", lname:"", username: "", email:""});
+    this.props.onCancel("new", {fname:"", lname:"", username: "", email:"",
+                                id: getClearFormId(this.state.provider.id)});
     event.preventDefault();
   }
 }
@@ -235,7 +235,7 @@ class Providers extends React.Component {
     this.state = {
       providers: [],
       formMode: "new",
-      provider: {lname:"", fname:"", username:"", email:"", id: "9999999"},
+      provider: {lname:"", fname:"", username:"", email:"", id: "999999"},
       alertActive: false,
       alertVariant: '',
       alertText: ''
@@ -285,7 +285,7 @@ class Providers extends React.Component {
   setAlertError(err, text) {
     this.setAlert('danger',
                   <React.Fragment>
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"/><br />
+                    <i className="fa fa-exclamation-triangle" aria-hidden="true"/><br />
                     {err.message}: {err.response.statusText}<br />
                     {text}
                   </React.Fragment>
@@ -316,7 +316,8 @@ class Providers extends React.Component {
   clearForm() {
     this.clearAlert();
     console.log("clear form");
-    this.updateForm("new", {fname:"", lname:"", email:"", username:"", id: "99999999"});
+    this.updateForm("new", {fname:"", lname:"", email:"", username:"",
+                            id: getClearFormId(this.state.provider.id)});
   }
 
   loadProviders() {
