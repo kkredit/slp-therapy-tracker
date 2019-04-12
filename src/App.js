@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import Includes from './Includes.js'
 import Navbar from './Navbar.js'
@@ -19,9 +19,9 @@ class App extends Component {
       <div className="App">
         <Container>
           <Includes />
-          <Navbar />
-
           <BrowserRouter>
+            <Navbar />
+
             <Route exact path="/" component={Home} />
             <Route exact path="/providers" component={Providers} />
             <Route exact path="/locations" component={Locations} />

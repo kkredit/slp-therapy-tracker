@@ -1,5 +1,7 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav'
+import { NavLink } from 'react-router-dom'
+
 import './Navbar.css';
 
 class Navbar extends React.Component {
@@ -18,13 +20,13 @@ class Navbar extends React.Component {
     return (
       <Nav className="Navbar" variant="pills" activeKey={this.state.activeTab}>
         <Nav.Item>
-          <Nav.Link eventKey="/" href="/">Home</Nav.Link>
+          <NavLink className="nav-link" exact to="/">Home</NavLink>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="/history" href="/history">History</Nav.Link>
+          <NavLink className="nav-link" exact to="/history">History</NavLink>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="/session" href="/session">Session</Nav.Link>
+          <NavLink className="nav-link" exact to="/session">Session</NavLink>
         </Nav.Item>
       </Nav>
     );

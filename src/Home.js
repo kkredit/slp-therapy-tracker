@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 import './Home.css';
 
@@ -9,9 +9,9 @@ class Home extends React.Component {
       <React.Fragment>
         <h1>SLP Therapy Tracker</h1>
 
-        <Button id="mainButton" variant="primary" size="lg" href="/session">
+        <Link id="mainButton" className="btn btn-primary btn-lg" to="/session">
           Start a session <i className="fa fa-arrow-circle-o-right"/>
-        </Button>
+        </Link>
 
         <p>
           This app is designed to ease data collection for Speech and Language Pathologists. Made
@@ -26,12 +26,12 @@ class Home extends React.Component {
           <li>View historical session data in the "History" page</li>
         </ol>
 
-        <Button className="navButton" variant="outline-primary" href="/providers">
+        <Link className="navButton btn btn-outline-primary" to="/providers">
           Update Providers <i className="fa fa-arrow-circle-right"/>
-        </Button>
-        <Button className="navButton" variant="outline-primary" href="/locations">
+        </Link>
+        <Link className="navButton btn btn-outline-primary" to="/locations">
           Update Locations <i className="fa fa-arrow-circle-right"/>
-        </Button>
+        </Link>
       </React.Fragment>
     );
   }
