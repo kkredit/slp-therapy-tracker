@@ -18,7 +18,7 @@ class Home extends React.Component {
           with &lt;3 for Kristen.
         </p>
 
-        <h3>Setup</h3>
+        <h3 className="subheader">How to Use</h3>
         <ol>
           <li>Enter your data in the "Providers" form</li>
           <li>Enter service location names in the "Locations" form</li>
@@ -31,6 +31,14 @@ class Home extends React.Component {
         </Link>
         <Link className="navButton btn btn-outline-primary" to="/locations">
           Update Locations <i className="fa fa-arrow-circle-right"/>
+        </Link>
+
+        <h3 className="subheader">More Info</h3>
+        <p>
+          This app was made as a class project. See more info at the developer page.
+        </p>
+        <Link className="navButton btn btn-outline-primary" to="/developer">
+          Developer page
         </Link>
 
         <div id="disclaimer">

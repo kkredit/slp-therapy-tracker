@@ -1,6 +1,8 @@
-h2, h3 {
+.subheader {
   text-align: left;
   clear: left;
+  height: 2em;
+  padding-top: 0.8em;
 }
 
 p, ol {

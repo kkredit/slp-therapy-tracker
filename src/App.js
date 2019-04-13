@@ -9,6 +9,7 @@ import Providers from './Providers.js'
 import Locations from './Locations.js'
 import History from './History.js'
 import Session from './Session.js'
+import Developer from './Developer.js'
 
 // import logo from './logo.svg';
 import './App.css';
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/locations" component={Locations} />
             <Route exact path="/history" component={History} />
             <Route exact path="/session" component={Session} />
+            <Route exact path="/developer" component={Developer} />
           </BrowserRouter>
         </Container>
       </div>
