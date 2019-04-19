@@ -71,6 +71,7 @@ class History extends React.Component {
       alertText: ''
     };
     this.setAlert = this.setAlert.bind(this);
+    this.setAlertError = this.setAlertError.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
     this.loadHistory = this.loadHistory.bind(this);
     this.removeHistory = this.removeHistory.bind(this);

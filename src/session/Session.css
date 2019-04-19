@@ -1,0 +1,23 @@
+
+#setupCard {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.setupButton {
+  margin: 15px;
+}
+
+#goals-hdr {
+  margin-top: 10px;
+}
+
+.sideNavButton {
+  margin-top: 250px;
+  height: 70px;
+  width: 70px;
+}
+
+.sideNavButtonText {
+  margin-top: 5px;
+}
