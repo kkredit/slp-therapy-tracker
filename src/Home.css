@@ -19,8 +19,3 @@ p, ol {
   clear: right;
   margin: 4px;
 }
-
-#disclaimer {
-  position: fixed;
-  bottom: 2em;
-}
