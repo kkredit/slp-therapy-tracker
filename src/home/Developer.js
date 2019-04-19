@@ -25,7 +25,7 @@ class Developer extends React.Component {
             <i className="fa fa-github"/> here
           </a>.
           The backend app is hosted&nbsp;
-          <a href="#">
+          <a href="/#">
             here
           </a>
           ; the code is available&nbsp;
@@ -57,7 +57,7 @@ class Developer extends React.Component {
           This app is a class project. There is no authentication. The user is solely responsible
           for all information that is uploaded to this site.
         </p>
-        
+
       </React.Fragment>
     );
   }

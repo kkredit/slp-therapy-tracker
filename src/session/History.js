@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import NotificationAlert from './NotificationAlert.js'
+import NotificationAlert from '../helpers/NotificationAlert.js'
 
 import './History.css'
 

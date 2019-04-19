@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import Includes from './Includes.js'
-import Navbar from './Navbar.js'
-import Home from './Home.js'
-import Providers from './Providers.js'
-import Locations from './Locations.js'
-import History from './History.js'
-import Session from './Session.js'
-import Developer from './Developer.js'
+import Includes from './helpers/Includes.js'
+import Navbar from './helpers/Navbar.js'
+import Home from './home/Home.js'
+import Providers from './settings/Providers.js'
+import Locations from './settings/Locations.js'
+import History from './session/History.js'
+import Session from './session/Session.js'
+import Developer from './home/Developer.js'
 
 // import logo from './logo.svg';
 import './App.css';
