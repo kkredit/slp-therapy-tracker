@@ -9,6 +9,10 @@ class DataEntry extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(props) {
+    return {active: props.active};
+  }
+
   render() {
     if (!this.state.active) {
       return null;

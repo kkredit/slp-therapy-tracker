@@ -53,13 +53,19 @@ class SessionSetup extends React.Component {
     this.decrStudentCallback = this.decrStudentCallback.bind(this);
     this.incrStudentCallback = this.incrStudentCallback.bind(this);
     this.studentUpdateCb = this.studentUpdateCb.bind(this);
+    this.startSession = this.startSession.bind(this);
 
     this.state = {
       active: props.active,
       numStudents: STUDENTS_MIN,
       students: [new Student(0, this.studentUpdateCb)],
-      studentUpdate: false
+      studentUpdate: false,
+      startCallback: props.startCallback
     };
+  }
+
+  static getDerivedStateFromProps(props) {
+    return {active: props.active};
   }
 
   render() {
@@ -100,7 +106,7 @@ class SessionSetup extends React.Component {
                 </Card>
               </Col>
               <Col xs={1}>
-                <Button className="sideNavButton" variant="success" size="lg">
+                <Button className="sideNavButton" variant="success" size="lg" onClick={this.startSession}>
                   <i className="fa fa-2x fa-angle-right" aria-hidden="true"/>
                 </Button>
               </Col>
@@ -136,6 +142,10 @@ class SessionSetup extends React.Component {
     this.setState({
       studentUpdate: true
     });
+  }
+
+  startSession() {
+    this.state.startCallback(this.state.students);
   }
 }
 

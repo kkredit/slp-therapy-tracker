@@ -1,7 +1,6 @@
 import React from 'react'
 import './Session.css'
 import NotificationAlert from '../helpers/NotificationAlert.js'
-import { STUDENTS_MIN } from './Student.js'
 import SessionSetup from './SessionSetup.js'
 import DataEntry from './DataEntry.js'
 
@@ -13,8 +12,9 @@ class Session extends React.Component {
       alertVariant: '',
       alertText: '',
       inSetup: true,
-      numStudents: STUDENTS_MIN
+      students: []
     };
+    this.startCallback = this.startCallback.bind(this);
     this.setAlert = this.setAlert.bind(this);
     this.setAlertError = this.setAlertError.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
@@ -27,10 +27,18 @@ class Session extends React.Component {
         <NotificationAlert active={this.state.alertActive}
                            variant={this.state.alertVariant}
                            text={this.state.alertText} />
-        <SessionSetup active={this.state.inSetup} />
+        <SessionSetup active={this.state.inSetup}
+                      startCallback={this.startCallback} />
         <DataEntry active={!this.state.inSetup} />
       </React.Fragment>
     );
+  }
+
+  startCallback(startStudents) {
+    this.setState({
+      students: startStudents,
+      inSetup: false
+    });
   }
 
   setAlert(variant, text) {
