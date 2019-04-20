@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 import { Link } from 'react-router-dom'
 
 const SetupButton = (props) => {
@@ -46,10 +47,49 @@ const StudentGoalList = (props) => {
   );
 }
 
+const ProvidersList = (props) => {
+  if (!props.providers) {
+    return null;
+  }
+  else {
+    const providerListItems = props.providers.map((provider) => {
+      return (
+        <option key={provider.id}>{provider.fname} {provider.lname}</option>
+      )
+    });
+
+    return (
+      <React.Fragment>
+        {providerListItems}
+      </React.Fragment>
+    );
+  }
+}
+
+const LocationsList = (props) => {
+  if (!props.locations) {
+    return null;
+  }
+  else {
+    const locationListItems = props.locations.map((location) => {
+      return (
+        <option key={location.id}>{location.name}</option>
+      )
+    });
+
+    return (
+      <React.Fragment>
+        {locationListItems}
+      </React.Fragment>
+    );
+  }
+}
+
 class SessionSetup extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.decrStudentCallback = this.decrStudentCallback.bind(this);
     this.incrStudentCallback = this.incrStudentCallback.bind(this);
     this.studentUpdateCb = this.studentUpdateCb.bind(this);
@@ -57,7 +97,10 @@ class SessionSetup extends React.Component {
 
     this.state = {
       active: props.active,
-      numStudents: STUDENTS_MIN,
+      providers: props.providers,
+      locations: props.locations,
+      provider: null,
+      location: null,
       students: [new Student(0, this.studentUpdateCb)],
       studentUpdate: false,
       startCallback: props.startCallback
@@ -65,7 +108,13 @@ class SessionSetup extends React.Component {
   }
 
   static getDerivedStateFromProps(props) {
-    return {active: props.active};
+    return {
+      active: props.active,
+      providers: props.providers,
+      provider: props.providers ? props.providers[0] : null,
+      locations: props.locations,
+      location: props.locations ? props.locations[0] : null,
+    };
   }
 
   render() {
@@ -91,16 +140,24 @@ class SessionSetup extends React.Component {
                       Select how many students will be in this session and how many goals each will
                       have.
                     </Card.Text>
-                    <Card.Subtitle className="mb-2"> Number of students </Card.Subtitle>
+                    <Card.Subtitle className="mb-2 setup-hdr"> Provider </Card.Subtitle>
+                    <Form.Control as="select" name="provider" onChange={e => this.handleInputChange(e)}>
+                      <ProvidersList providers={this.state.providers} />
+                    </Form.Control>
+                    <Card.Subtitle className="mb-2 setup-hdr"> Location </Card.Subtitle>
+                    <Form.Control as="select" name="location" onChange={e => this.handleInputChange(e)}>
+                      <LocationsList locations={this.state.locations} />
+                    </Form.Control>
+                    <Card.Subtitle className="mb-2 setup-hdr"> Number of students </Card.Subtitle>
                     <SetupButton faClass="fa fa-minus"
-                                 disabled={STUDENTS_MIN >= this.state.numStudents}
+                                 disabled={STUDENTS_MIN >= this.state.students.length}
                                  onClick={this.decrStudentCallback} />
-                    {this.state.numStudents}
+                    {this.state.students.length}
                     <SetupButton faClass="fa fa-plus"
-                                 disabled={STUDENTS_MAX <= this.state.numStudents}
+                                 disabled={STUDENTS_MAX <= this.state.students.length}
                                  onClick={this.incrStudentCallback} />
 
-                    <Card.Subtitle className="mb-2" id="goals-hdr"> Number of goals </Card.Subtitle>
+                    <Card.Subtitle className="mb-2 setup-hdr"> Number of goals </Card.Subtitle>
                     <StudentGoalList students={this.state.students} />
                   </Card.Body>
                 </Card>
@@ -118,21 +175,31 @@ class SessionSetup extends React.Component {
     }
   }
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    console.log("changing " + name + " to " + value);
+    this.setState({
+      [name]: value
+    });
+  }
+
   decrStudentCallback() {
-    if (this.state.numStudents > STUDENTS_MIN) {
+    if (this.state.students.length > STUDENTS_MIN) {
       this.setState({
-        numStudents: this.state.numStudents - 1,
+        numStudents: this.state.students.length - 1,
         students: this.state.students.slice(0, -1)
       });
     }
   }
 
   incrStudentCallback() {
-    if (this.state.numStudents < STUDENTS_MAX) {
+    if (this.state.students.length < STUDENTS_MAX) {
       this.setState({
-        numStudents: this.state.numStudents + 1,
+        numStudents: this.state.students.length + 1,
         students: this.state.students.concat(
-          [new Student(this.state.numStudents, this.studentUpdateCb)]
+          [new Student(this.state.students.length, this.studentUpdateCb)]
         )
       });
     }
@@ -145,7 +212,7 @@ class SessionSetup extends React.Component {
   }
 
   startSession() {
-    this.state.startCallback(this.state.students);
+    this.state.startCallback(this.state.students, this.state.provider, this.state.location);
   }
 }
 

@@ -286,7 +286,7 @@ class Providers extends React.Component {
     this.setAlert('danger',
                   <React.Fragment>
                     <i className="fa fa-exclamation-triangle" aria-hidden="true"/><br />
-                    {err.message}: {err.response.statusText}<br />
+                    {err.message}: {err.response ? err.response.statusText : "No response"}<br />
                     {text}
                   </React.Fragment>
                   );
@@ -330,7 +330,6 @@ class Providers extends React.Component {
             })
       .catch(err => {
                console.log(err);
-               this.setAlert('danger', err);
                this.setAlertError(err, "Could not load current providers.");
              });
   }

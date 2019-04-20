@@ -84,7 +84,8 @@ class StudentRow extends React.Component {
           <Carousel className="goalsCarousel"
                     interval={null}
                     indicators={false}
-                    // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
+                    prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
+                    nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
                     >
             <GoalsCarouselSet student={this.state.student} goals={this.state.student.goals} />
           </Carousel>
@@ -122,11 +123,23 @@ class DataEntry extends React.Component {
     super(props);
     this.state = {
       active: props.active,
+      students: props.students,
+      provider: props.provider,
+      location: props.location,
+      endCallback: props.endCallback
     };
+
+    this.sessionDiscard = this.sessionDiscard.bind(this);
+    this.sessionSubmit = this.sessionSubmit.bind(this);
   }
 
   static getDerivedStateFromProps(props) {
-    return {active: props.active, students: props.students};
+    return {
+      active: props.active,
+      students: props.students,
+      provider: props.provider,
+      location: props.location,
+    };
   }
 
   render() {
@@ -134,6 +147,7 @@ class DataEntry extends React.Component {
       return null;
     }
     else {
+      console.log(this.state);
       return (
         <React.Fragment>
           <Container>
@@ -152,6 +166,27 @@ class DataEntry extends React.Component {
 
           <Container>
             <Row>
+              <Col xs={1}/>
+              <Col xs={2}>
+                <h3 className="nameLocation"> {this.state.provider.fname} {this.state.provider.lname} </h3>
+              </Col>
+              <Col xs={2}>
+                <h3 className="nameLocation"> {this.state.location.name} </h3>
+              </Col>
+              <Col xs={4}/>
+              <Col xs={1}>
+                <Button variant="danger" className="endButton" onClick={this.sessionDiscard}>
+                  <i className="fa fa-trash" /> Discard
+                </Button>
+              </Col>
+              <Col xs={1}>
+                <Button variant="success" className="endButton" onClick={this.sessionSubmit}>
+                  <i className="fa fa-save" /> Submit
+                </Button>
+              </Col>
+              <Col xs={1} />
+            </Row>
+            <Row>
               <Col xs={1}>
                 <h3 className="dataColHdr"> Students </h3>
               </Col>
@@ -169,7 +204,8 @@ class DataEntry extends React.Component {
                 <Carousel className="goalsCarousel"
                           interval={null}
                           indicators={false}
-                          // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
+                          prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
+                          nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
                           >
                   <Carousel.Item>
                     <Container>
@@ -226,7 +262,8 @@ class DataEntry extends React.Component {
                 <Carousel className="goalsCarousel"
                           interval={null}
                           indicators={false}
-                          // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
+                          prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
+                          nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
                           >
                   <Carousel.Item>
                     <Container>
@@ -279,6 +316,14 @@ class DataEntry extends React.Component {
         </React.Fragment>
       );
     }
+  }
+
+  sessionDiscard() {
+    this.state.endCallback(this.state.students);
+  }
+
+  sessionSubmit() {
+    this.state.endCallback(this.state.students);
   }
 }
 
