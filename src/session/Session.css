@@ -21,3 +21,25 @@
 .sideNavButtonText {
   margin-top: 5px;
 }
+
+.dataColHdr {
+  text-align: center;
+  font-size: 16pt;
+}
+
+.studentName, .goalNum {
+  font-size: 10pt;
+}
+
+.goalsCarousel {
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+}
+
+.goalsCarousel .carousel-item {
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}

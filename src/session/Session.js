@@ -29,7 +29,8 @@ class Session extends React.Component {
                            text={this.state.alertText} />
         <SessionSetup active={this.state.inSetup}
                       startCallback={this.startCallback} />
-        <DataEntry active={!this.state.inSetup} />
+        <DataEntry active={!this.state.inSetup}
+                   students={this.state.students} />
       </React.Fragment>
     );
   }
