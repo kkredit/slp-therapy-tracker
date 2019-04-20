@@ -42,62 +42,79 @@ const GoalCarouselItem = (props) => {
   );
 }
 
-const GoalsCarouselSet = (props) => {
-  const goalCarouselItems = props.goals.map((goal) => {
-    console.log(goal);
-    return (
-      <GoalCarouselItem key={goal.key + 10*props.key}
-                        goal={goal} />
-    );
-  });
+class GoalsCarouselSet extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      goals: props.goals,
+    };
+  }
 
-  console.log("GoalsCarouselSet key: " + props.key);
-  console.log("GoalsCarouselSet called with # goals: " + props.goals.length);
-  return (
-    <React.Fragment>
-      {goalCarouselItems}
-    </React.Fragment>
-  );
+  render() {
+    const goalCarouselItems = this.state.goals.map((goal) => {
+      return (
+        <GoalCarouselItem key={goal.key}
+                          goal={goal} />
+      );
+    });
+
+    return (
+      <React.Fragment>
+        {goalCarouselItems}
+      </React.Fragment>
+    );
+  }
 }
 
-const StudentRow = (props) => {
-  console.log("StudentRow key: " + props.key);
-  return (
-    <Row>
-      <Col xs={1}>
-        <h4 className="studentName"> Student {props.student.number + 1} </h4>
-      </Col>
-      <Col xs={11}>
-        <Carousel className="goalsCarousel"
-                  interval={null}
-                  indicators={false}
-                  // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
-                  >
-          <GoalsCarouselSet key={props.key} goals={props.student.goals} />
-        </Carousel>
-      </Col>
-    </Row>
-  );
+class StudentRow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      student: props.student,
+    };
+  }
+
+  render() {
+    return (
+      <Row>
+        <Col xs={1}>
+          <h4 className="studentName"> Student {this.state.student.number + 1} </h4>
+        </Col>
+        <Col xs={11}>
+          <Carousel className="goalsCarousel"
+                    interval={null}
+                    indicators={false}
+                    // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
+                    >
+            <GoalsCarouselSet student={this.state.student} goals={this.state.student.goals} />
+          </Carousel>
+        </Col>
+      </Row>
+    );
+  }
 }
 
-const StudentRows = (props) => {
-  console.log("students:");
-  console.log(props.students);
-  const studentRowEntries = props.students.map((student) => {
-    console.log("a student:");
-    console.log(student);
-    console.log(student.key);
-    return (
-      <StudentRow key={student.key}
-                  student={student} />
-    );
-  });
+class StudentRows extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: props.students,
+    };
+  }
 
-  return (
-    <React.Fragment>
-      {studentRowEntries}
-    </React.Fragment>
-  );
+  render() {
+    const studentRowEntries = this.state.students.map((student) => {
+      return (
+        <StudentRow key={student.number} student={student} />
+      );
+    });
+
+    return (
+      <React.Fragment>
+        {studentRowEntries}
+      </React.Fragment>
+    );
+  }
 }
 
 class DataEntry extends React.Component {
@@ -151,7 +168,7 @@ class DataEntry extends React.Component {
               <Col xs={11}>
                 <Carousel className="goalsCarousel"
                           interval={null}
-                          controls={true}
+                          indicators={false}
                           // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
                           >
                   <Carousel.Item>
@@ -208,7 +225,7 @@ class DataEntry extends React.Component {
               <Col xs={11}>
                 <Carousel className="goalsCarousel"
                           interval={null}
-                          controls={true}
+                          indicators={false}
                           // nextIcon={<i className="fa fa-angle-right" aria-hidden="false"/>}
                           >
                   <Carousel.Item>
