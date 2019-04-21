@@ -32,9 +32,9 @@
 }
 
 #dataContainer {
-  border-color: gray;
-  border-radius: 10px;
-  border-width: 2px;
+  outline: solid LightSlateGray 3px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .studentName, .goalNum {
@@ -42,10 +42,9 @@
   font-style: italic;
 }
 
-.goalsCarousel {
-  border-style: solid;
-  border-width: 1px;
-  border-color: gray;
+.studentName {
+  margin-top: 35px;
+  text-align: right;
 }
 
 .carouselDirections {

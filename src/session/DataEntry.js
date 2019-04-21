@@ -1,6 +1,5 @@
 import React from 'react'
 import './Session.css'
-// import { Student, STUDENTS_MIN, STUDENTS_MAX, GOALS_MIN, GOALS_MAX } from './Student.js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -128,12 +127,12 @@ class DataEntry extends React.Component {
             </Col>
             <Col xs={4}/>
             <Col xs={1}>
-              <Button variant="danger" className="endButton" onClick={this.sessionDiscard}>
+              <Button variant="outline-danger" className="endButton" onClick={this.sessionDiscard}>
                 <i className="fa fa-trash" /> Discard
               </Button>
             </Col>
             <Col xs={1}>
-              <Button variant="success" className="endButton" onClick={this.sessionSubmit}>
+              <Button variant="outline-success" className="endButton" onClick={this.sessionSubmit}>
                 <i className="fa fa-save" /> Submit
               </Button>
             </Col>
