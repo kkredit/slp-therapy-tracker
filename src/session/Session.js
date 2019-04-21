@@ -95,6 +95,8 @@ class Session extends React.Component {
       students: endStudents,
       inSetup: true
     });
+    console.log("session ended; students = ");
+    console.log(endStudents);
   }
 
   setAlert(variant, text) {
