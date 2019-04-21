@@ -4,6 +4,7 @@ import './Session.css'
 import NotificationAlert from '../helpers/NotificationAlert.js'
 import SessionSetup from './SessionSetup.js'
 import DataEntry from './DataEntry.js'
+import { ATTEMPT_SUCC, ATTEMPT_CUED, ATTEMPT_FAIL } from './Student.js'
 
 const API_BASE = 'http://localhost:8000';
 
@@ -90,14 +91,37 @@ class Session extends React.Component {
     });
   }
 
-  endCallback(endStudents) {
+  endCallback(endProvider, endLocation, endStudents) {
     this.setState({
+      provider: endProvider,
+      location: endLocation,
       students: endStudents,
       inSetup: true
     });
     console.log("session ended; students = ");
     console.log(endStudents);
+    console.log("student 0 goal 0 attempts:");
+    const attempts = endStudents[0].goals[0].attempts;
+    const succ = attempts.filter(function(a){return a === ATTEMPT_SUCC}).length;
+    const cued = attempts.filter(function(a){return a === ATTEMPT_CUED}).length;
+    const fail = attempts.filter(function(a){return a === ATTEMPT_FAIL}).length;
+    console.log("success: " + succ + ", cued: " + cued + ", fail: " + fail);
+    console.log("provider = " + endProvider + ", location = " + endLocation);
   }
+
+  // submitSession() {
+  //   axios
+  //     .post(`${API_BASE}/sessions.json`)
+  //     .then(res => {
+  //             res.data.key = res.data.id;
+  //             this.setState({ locations: [...this.state.locations, res.data] });
+  //             this.clearForm();
+  //           })
+  //     .catch(err => {
+  //              console.log(err);
+  //              this.setAlertError(err, "Could not submit the session.");
+  //            });
+  // }
 
   setAlert(variant, text) {
     this.setState({

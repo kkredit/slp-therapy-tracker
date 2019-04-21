@@ -155,11 +155,11 @@ class DataEntry extends React.Component {
   }
 
   sessionDiscard() {
-    this.state.endCallback(this.state.students);
+    this.state.endCallback(null, null, null);
   }
 
   sessionSubmit() {
-    this.state.endCallback(this.state.students);
+    this.state.endCallback(this.state.provider, this.state.location, this.state.students);
   }
 }
 
