@@ -10,8 +10,6 @@ import Locations from './settings/Locations.js'
 import History from './session/History.js'
 import Session from './session/Session.js'
 import Developer from './home/Developer.js'
-
-// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {

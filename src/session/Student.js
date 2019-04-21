@@ -6,13 +6,34 @@ export const GOALS_MAX = 4;
 
 export const ATTEMPT_SUCC = 0;
 export const ATTEMPT_FAIL = 1;
-export const ATTEMPT_CUE = 2;
+export const ATTEMPT_CUED = 2;
 
 export class Goal {
   constructor(number) {
     this.key = number;
     this.number = number;
     this.attempts = [];
+
+    this.addAttempt = this.addAttempt.bind(this);
+    this.addSuccess = this.addSuccess.bind(this);
+    this.addFail = this.addFail.bind(this);
+    this.addCued = this.addCued.bind(this);
+  }
+
+  addAttempt(type) {
+    this.attempts.push(type);
+  }
+
+  addSuccess() {
+    this.addAttempt(ATTEMPT_SUCC);
+  }
+
+  addFail() {
+    this.addAttempt(ATTEMPT_FAIL);
+  }
+
+  addCued() {
+    this.addAttempt(ATTEMPT_CUED);
   }
 }
 

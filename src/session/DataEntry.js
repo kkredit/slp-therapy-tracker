@@ -17,7 +17,6 @@ const GoalButton = (props) => {
 
 const GoalCarouselItem = (props) => {
   return (
-    <Carousel.Item>
       <Container>
         <Row>
           <Col xs>
@@ -27,22 +26,21 @@ const GoalCarouselItem = (props) => {
         <Row>
           <Col xs/>
           <Col xs={3}>
-            <GoalButton faClass="fa fa-3x fa-check" />
+            <GoalButton faClass="fa fa-3x fa-check" onClick={props.goal.addSuccess} />
           </Col>
           <Col xs={3}>
-            <GoalButton faClass="fa fa-3x fa-circle-o" />
+            <GoalButton faClass="fa fa-3x fa-circle-o" onClick={props.goal.addCued} />
           </Col>
           <Col xs={3}>
-            <GoalButton faClass="fa fa-3x fa-times" />
+            <GoalButton faClass="fa fa-3x fa-times" onClick={props.goal.addFail} />
           </Col>
           <Col xs/>
         </Row>
       </Container>
-    </Carousel.Item>
   );
 }
 
-class GoalsCarouselSet extends React.Component {
+class GoalsCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,15 +51,20 @@ class GoalsCarouselSet extends React.Component {
   render() {
     const goalCarouselItems = this.state.goals.map((goal) => {
       return (
-        <GoalCarouselItem key={goal.key}
-                          goal={goal} />
+        <Carousel.Item>
+          <GoalCarouselItem key={goal.number} goal={goal} />
+        </Carousel.Item>
       );
     });
 
     return (
-      <React.Fragment>
+      <Carousel className="goalsCarousel"
+                interval={null}
+                indicators={false}
+                prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
+                nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />} >
         {goalCarouselItems}
-      </React.Fragment>
+      </Carousel>
     );
   }
 }
@@ -81,14 +84,7 @@ class StudentRow extends React.Component {
           <h4 className="studentName"> Student {this.state.student.number + 1} </h4>
         </Col>
         <Col xs={11}>
-          <Carousel className="goalsCarousel"
-                    interval={null}
-                    indicators={false}
-                    prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
-                    nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
-                    >
-            <GoalsCarouselSet student={this.state.student} goals={this.state.student.goals} />
-          </Carousel>
+          <GoalsCarousel goals={this.state.student.goals} />
         </Col>
       </Row>
     );
@@ -147,24 +143,9 @@ class DataEntry extends React.Component {
       return null;
     }
     else {
-      console.log(this.state);
       return (
         <React.Fragment>
-          <Container>
-            <Row>
-              <Col xs={1}>
-                <h3 className="dataColHdr"> Students </h3>
-              </Col>
-              <Col xs={1} />
-              <Col xs={9}>
-                <h3 className="dataColHdr"> Goals </h3>
-              </Col>
-              <Col xs={1} />
-            </Row>
-            <StudentRows students={this.state.students} />
-          </Container>
-
-          <Container>
+          <Container id="dataContainer">
             <Row>
               <Col xs={1}/>
               <Col xs={2}>
@@ -196,122 +177,7 @@ class DataEntry extends React.Component {
               </Col>
               <Col xs={1} />
             </Row>
-            <Row>
-              <Col xs={1}>
-                <h4 className="studentName"> Student {this.state.students[0].number + 1} </h4>
-              </Col>
-              <Col xs={11}>
-                <Carousel className="goalsCarousel"
-                          interval={null}
-                          indicators={false}
-                          prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
-                          nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
-                          >
-                  <Carousel.Item>
-                    <Container>
-                      <Row>
-                        <Col xs>
-                          <h4 className="goalNum"> Goal {this.state.students[0].goals[0].number + 1} </h4>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs/>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-check" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-circle-o" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-times" />
-                        </Col>
-                        <Col xs/>
-                      </Row>
-                    </Container>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <Container>
-                      <Row>
-                        <Col xs>
-                          <h4 className="goalNum"> Goal {this.state.students[0].goals[1].number + 1} </h4>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs/>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-check" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-circle-o" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-times" />
-                        </Col>
-                        <Col xs/>
-                      </Row>
-                    </Container>
-                  </Carousel.Item>
-                </Carousel>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={1}>
-                <h4 className="studentName"> Student {this.state.students[1].number + 1} </h4>
-              </Col>
-              <Col xs={11}>
-                <Carousel className="goalsCarousel"
-                          interval={null}
-                          indicators={false}
-                          prevIcon={<i className="fa fa-3x fa-angle-left carouselDirections" />}
-                          nextIcon={<i className="fa fa-3x fa-angle-right carouselDirections" />}
-                          >
-                  <Carousel.Item>
-                    <Container>
-                      <Row>
-                        <Col xs>
-                          <h4 className="goalNum"> Goal {this.state.students[1].goals[0].number + 1} </h4>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs/>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-check" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-circle-o" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-times" />
-                        </Col>
-                        <Col xs/>
-                      </Row>
-                    </Container>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <Container>
-                      <Row>
-                        <Col xs>
-                          <h4 className="goalNum"> Goal {this.state.students[1].goals[1].number + 1} </h4>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs/>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-check" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-circle-o" />
-                        </Col>
-                        <Col xs={3}>
-                          <GoalButton faClass="fa fa-3x fa-times" />
-                        </Col>
-                        <Col xs/>
-                      </Row>
-                    </Container>
-                  </Carousel.Item>
-                </Carousel>
-              </Col>
-            </Row>
+            <StudentRows students={this.state.students} />
           </Container>
         </React.Fragment>
       );

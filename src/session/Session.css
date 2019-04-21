@@ -28,11 +28,18 @@
 }
 
 .nameLocation {
-  font-size: 16pt;
+  font-size: 10pt;
+}
+
+#dataContainer {
+  border-color: gray;
+  border-radius: 10px;
+  border-width: 2px;
 }
 
 .studentName, .goalNum {
   font-size: 10pt;
+  font-style: italic;
 }
 
 .goalsCarousel {
