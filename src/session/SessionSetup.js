@@ -127,9 +127,9 @@ class SessionSetup extends React.Component {
           <Container>
             <Row>
               <Col xs></Col>
-              <Col xs={1}>
-                <Link className="sideNavButton btn btn-light btn-lg" to="/history">
-                  <i className="fa fa-2x fa-angle-double-left sideNavButtonText" aria-hidden="true"/>
+              <Col xs={2}>
+                <Link className="sideNavButton btn btn-light btn-lg" type="button" to="/history">
+                  <i className="fa fa-2x fa-fw fa-angle-double-left" aria-hidden="true"/>
                 </Link>
               </Col>
               <Col xs={4}>
@@ -162,9 +162,9 @@ class SessionSetup extends React.Component {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col xs={1}>
+              <Col xs={2}>
                 <Button className="sideNavButton" variant="success" size="lg" onClick={this.startSession}>
-                  <i className="fa fa-2x fa-angle-right" aria-hidden="true"/>
+                  <i className="fa fa-2x fa-fw fa-angle-right" aria-hidden="true"/>
                 </Button>
               </Col>
               <Col xs></Col>
