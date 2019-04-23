@@ -168,7 +168,7 @@ class Locations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [],
+      db: props.db,
       formMode: "new",
       location: {name:"", id: "999999"},
       alertActive: false,
@@ -186,6 +186,12 @@ class Locations extends React.Component {
     this.formSubmitted = this.formSubmitted.bind(this);
   }
 
+  static getDerivedStateFromProps(props) {
+    return {
+      db: props.db
+    };
+  }
+
   render() {
     return (
       <div className="locations">
@@ -201,7 +207,7 @@ class Locations extends React.Component {
           key={this.state.location.id}
         />
         <LocationList
-          locations={this.state.locations}
+          locations={this.state.db.locations}
           onDelete={(id) => this.removeLocation(id)}
           onEdit={(mode,location) => this.updateForm(mode,location)}
         />
@@ -260,7 +266,7 @@ class Locations extends React.Component {
       .then(res => {
               this.setState({ locations: res.data });
               this.clearAlert();
-              console.log(`Data loaded! = ${this.state.locations}`);
+              console.log(`Data loaded! = ${this.state.db.locations}`);
             })
       .catch(err => {
                console.log(err);

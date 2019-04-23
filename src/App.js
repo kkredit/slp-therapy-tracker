@@ -66,7 +66,7 @@ class App extends Component {
               <Route exact path="/providers" render={(props) => <Providers db={this.state.db} {...props} />} />
               <Route exact path="/locations" render={(props) => <Locations db={this.state.db} {...props} />} />
               <Route exact path="/history" render={(props) => <History db={this.state.db} {...props} />} />
-              <Route exact path="/session" component={Session} />
+              <Route exact path="/session" render={(props) => <Session db={this.state.db} {...props} />} />
               <Route exact path="/developer" component={Developer} />
             </BrowserRouter>
           </Container>

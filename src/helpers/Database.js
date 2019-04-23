@@ -26,6 +26,7 @@ export default class Database {
     this.loadAll = this.loadAll.bind(this);
     this.loadedCallback = this.loadedCallback.bind(this);
 
+    this.getResource = this.getResource.bind(this);
     this.getLocations = this.getLocations.bind(this);
     this.getProviders = this.getProviders.bind(this);
     this.getSessions = this.getSessions.bind(this);
@@ -45,8 +46,8 @@ export default class Database {
     const sessionData = {
       id: session.id,
       time: session.time,
-      location: this.getLocationFromId(session.location_id),
-      provider: this.getProviderFromId(session.provider_id),
+      location: this.getLocationFromId(session.location_id) || "NA",
+      provider: this.getProviderFromId(session.provider_id) || "NA",
       students: students,
     };
     console.log(sessionData);
@@ -81,93 +82,43 @@ export default class Database {
     this.state.loadedCallback();
   }
 
-  getLocations() {
+  getResource(name, apiUrl, setFunc, thenFunc) {
     axios
-      .get(`${this.apiBase}/locations.json`)
+      .get(`${this.apiBase}${apiUrl}`)
       .then(res => {
-              this.locations = res.data;
-              console.log(`locations loaded [${this.locations.length}]`);
-              this.getProviders();
+              setFunc(res.data);
+              console.log(`${name} loaded [${res.data.length}]`);
+              console.log(res.data);
+              thenFunc();
             })
       .catch(err => {
-               console.log("Could not load locations.");
+               console.log(`Could not load ${name}.`);
                console.log(err);
-               // this.setAlertError(err, "Could not load locations.");
+               // this.setAlertError(err, "Could not load ${name}.");
              });
+  }
+
+  getLocations() {
+    this.getResource('locations', '/locations.json', ((data) => {this.locations = data}), this.getProviders);
   }
 
   getProviders() {
-    axios
-      .get(`${this.apiBase}/providers.json`)
-      .then(res => {
-              this.providers = res.data;
-              console.log(`providers loaded [${this.providers.length}]`);
-              this.getSessions();
-            })
-      .catch(err => {
-               console.log("Could not load providers.");
-               console.log(err);
-               // this.setAlertError(err, "Could not load  providers.");
-             });
+    this.getResource('providers', '/providers.json', ((data) => {this.providers = data}), this.getSessions);
   }
 
   getSessions() {
-    axios
-      .get(`${this.apiBase}/sessions.json`)
-      .then(res => {
-              this.sessions = res.data;
-              console.log(`sessions loaded [${this.sessions.length}]`);
-              this.getStudents();
-            })
-      .catch(err => {
-               console.log("Could not load sessions.");
-               console.log(err);
-               // this.setAlertError(err, "Could not load sessions.");
-             });
+    this.getResource('sessions', '/sessions.json', ((data) => {this.sessions = data}), this.getStudents);
   }
 
   getStudents() {
-    axios
-      .get(`${this.apiBase}/students.json`)
-      .then(res => {
-              this.students = res.data;
-              console.log(`students loaded [${this.students.length}]`);
-              this.getGoals();
-            })
-      .catch(err => {
-               console.log("Could not load students.");
-               console.log(err);
-               // this.setAlertError(err, "Could not load students.");
-             });
+    this.getResource('students', '/students.json', ((data) => {this.students = data}), this.getGoals);
   }
 
   getGoals() {
-    axios
-      .get(`${this.apiBase}/goals.json`)
-      .then(res => {
-              this.goals = res.data;
-              console.log(`goals loaded [${this.goals.length}]`);
-              this.getAttempts();
-            })
-      .catch(err => {
-               console.log("Could not load goals.");
-               console.log(err);
-               // this.setAlertError(err, "Could not load goals.");
-             });
+    this.getResource('goals', '/goals.json', ((data) => {this.goals = data}), this.getAttempts);
   }
 
   getAttempts() {
-    axios
-      .get(`${this.apiBase}/attempts.json`)
-      .then(res => {
-              this.attempts = res.data;
-              console.log(`attempts loaded [${this.attempts.length}]`);
-              this.loadedCallback();
-            })
-      .catch(err => {
-               console.log("Could not load attempts.");
-               console.log(err);
-               // this.setAlertError(err, "Could not load attempts.");
-             });
+    this.getResource('attempts', '/attempts.json', ((data) => {this.attempts = data}), this.loadedCallback);
   }
 }
