@@ -8,21 +8,21 @@ import './History.css'
 
 const API_BASE = 'http://localhost:8000';
 
-const HistoryListItem = (props) => {
-  const dateTime = new Date(props.historyItem.time);
+const SessionRow = (props) => {
+  const dateTime = new Date(props.session.time);
   return (
     <tr className="historyRow">
       <td className="col-md-1"/>
       <td className="col-md-2">{dateTime.toLocaleDateString()}</td>
       <td className="col-md-2">{dateTime.toLocaleTimeString()}</td>
-      <td className="col-md-2">{props.historyItem.provider ? props.historyItem.provider.username : "NA"}</td>
-      <td className="col-md-2">{props.historyItem.location ? props.historyItem.location.name : "NA"}</td>
+      <td className="col-md-2">{props.session.provider ? props.session.provider.username : "NA"}</td>
+      <td className="col-md-2">{props.session.location ? props.session.location.name : "NA"}</td>
       <td className="col-md-2">
         <ButtonGroup aria-label="CRUD buttons">
-          <Button variant="primary" size="sm" onClick={event => props.onView(props.historyItem.id)}>
+          <Button variant="primary" size="sm" onClick={event => props.onView(props.session.id)}>
             <i className="fa fa-eye"/> View
           </Button>
-          <Button variant="danger" size="sm" onClick={event => props.onDelete(props.historyItem.id)}>
+          <Button variant="danger" size="sm" onClick={event => props.onDelete(props.session.id)}>
             <i className="fa fa-trash"/> Delete
           </Button>
         </ButtonGroup>
@@ -32,13 +32,13 @@ const HistoryListItem = (props) => {
   );
 }
 
-const HistoryList = (props) => {
-  const historyItems = props.history.map((historyItem) => {
+const SessionList = (props) => {
+  const sessionRows = props.sessions.map((session) => {
     return (
-      <HistoryListItem historyItem={historyItem}
-                       key={historyItem.id}
-                       onView={props.onView}
-                       onDelete={props.onDelete} />
+      <SessionRow session={session}
+                  key={session.id}
+                  onView={props.onView}
+                  onDelete={props.onDelete} />
     )
   });
 
@@ -57,7 +57,7 @@ const HistoryList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {historyItems}
+          {sessionRows}
         </tbody>
       </table>
     </div>
@@ -68,9 +68,8 @@ class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      historyItems: [],
+      sessions: [],
       formMode: "new",
-      history: {time:"", provider:"", location:"", id: "999999"},
       alertActive: false,
       alertVariant: '',
       alertText: ''
@@ -90,7 +89,7 @@ class History extends React.Component {
         <NotificationAlert active={this.state.alertActive}
                            variant={this.state.alertVariant}
                            text={this.state.alertText} />
-        <HistoryList history={this.state.historyItems}
+        <SessionList sessions={this.state.sessions}
                      onView={(id) => this.viewHistory(id)}
                      onDelete={(id) => this.removeHistory(id)} />
       </div>
@@ -132,25 +131,25 @@ class History extends React.Component {
     axios
       .get(`${API_BASE}/sessions.json`)
       .then(res => {
-              this.setState({ historyItems: res.data });
+              this.setState({ sessions: res.data });
               this.clearAlert();
-              console.log(`Data loaded! = ${this.state.historyItems.length}`);
+              console.log(`Data loaded! = ${this.state.sessions.length}`);
             })
       .catch(err => {
                console.log(err);
                this.setAlert('danger', err);
-               this.setAlertError(err, "Could not load current history.");
+               this.setAlertError(err, "Could not load session history.");
              });
   }
 
   viewHistory(id) {
-    let viewHistoryItem = this.state.historyItems.filter(item => item.id === id)[0];
-    console.log("trying to view history item ID: " + id + ", or " + viewHistoryItem.id);
+    let viewSession = this.state.sessions.filter(session => session.id === id)[0];
+    console.log("trying to view history item ID: " + id + ", or " + viewSession.id);
   }
 
   removeHistory(id) {
-    let filteredArray = this.state.historyItems.filter(item => item.id !== id);
-    this.setState({historyItems: filteredArray});
+    let filteredArray = this.state.sessions.filter(item => item.id !== id);
+    this.setState({sessions: filteredArray});
     axios
       .delete(`${API_BASE}/sessions/${id}.json`)
       .then(res => {
@@ -159,7 +158,7 @@ class History extends React.Component {
             })
       .catch(err => {
                console.log(err);
-               this.setAlertError(err, "Could not remove history.");
+               this.setAlertError(err, "Could not remove session.");
              });
   }
 };
