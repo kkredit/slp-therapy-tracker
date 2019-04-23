@@ -19,10 +19,10 @@ const HistoryListItem = (props) => {
       <td className="col-md-2">{props.historyItem.location ? props.historyItem.location.name : "NA"}</td>
       <td className="col-md-2">
         <ButtonGroup aria-label="CRUD buttons">
-          <Button variant="primary" size="sm">
+          <Button variant="primary" size="sm" onClick={event => props.onView(props.historyItem.id)}>
             <i className="fa fa-eye"/> View
           </Button>
-          <Button variant="danger" size="sm">
+          <Button variant="danger" size="sm" onClick={event => props.onDelete(props.historyItem.id)}>
             <i className="fa fa-trash"/> Delete
           </Button>
         </ButtonGroup>
@@ -37,8 +37,8 @@ const HistoryList = (props) => {
     return (
       <HistoryListItem historyItem={historyItem}
                        key={historyItem.id}
-                       onDelete={props.onDelete}
-                       onEdit={props.onEdit} />
+                       onView={props.onView}
+                       onDelete={props.onDelete} />
     )
   });
 
@@ -79,6 +79,7 @@ class History extends React.Component {
     this.setAlertError = this.setAlertError.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
     this.loadHistory = this.loadHistory.bind(this);
+    this.viewHistory = this.viewHistory.bind(this);
     this.removeHistory = this.removeHistory.bind(this);
   }
 
@@ -90,6 +91,7 @@ class History extends React.Component {
                            variant={this.state.alertVariant}
                            text={this.state.alertText} />
         <HistoryList history={this.state.historyItems}
+                     onView={(id) => this.viewHistory(id)}
                      onDelete={(id) => this.removeHistory(id)} />
       </div>
     );
@@ -141,11 +143,16 @@ class History extends React.Component {
              });
   }
 
+  viewHistory(id) {
+    let viewHistoryItem = this.state.historyItems.filter(item => item.id === id)[0];
+    console.log("trying to view history item ID: " + id + ", or " + viewHistoryItem.id);
+  }
+
   removeHistory(id) {
-    let filteredArray = this.state.history.filter(item => item.id !== id)
-    this.setState({history: filteredArray});
+    let filteredArray = this.state.historyItems.filter(item => item.id !== id);
+    this.setState({historyItems: filteredArray});
     axios
-      .delete(`${API_BASE}/history/${id}.json`)
+      .delete(`${API_BASE}/sessions/${id}.json`)
       .then(res => {
               console.log(`Record Deleted`);
               this.clearAlert();
