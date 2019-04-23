@@ -26,6 +26,7 @@ class Session extends React.Component {
     this.loadLocations = this.loadLocations.bind(this);
     this.startCallback = this.startCallback.bind(this);
     this.endCallback = this.endCallback.bind(this);
+    this.submitSession = this.submitSession.bind(this);
     this.setAlert = this.setAlert.bind(this);
     this.setAlertError = this.setAlertError.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
@@ -106,22 +107,29 @@ class Session extends React.Component {
     const cued = attempts.filter(function(a){return a === ATTEMPT_CUED}).length;
     const fail = attempts.filter(function(a){return a === ATTEMPT_FAIL}).length;
     console.log("success: " + succ + ", cued: " + cued + ", fail: " + fail);
-    console.log("provider = " + endProvider + ", location = " + endLocation);
+    console.log("provider ID = " + endProvider.id + ", location ID = " + endLocation.id);
+
+    this.submitSession(endProvider, endLocation, endStudents);
   }
 
-  // submitSession() {
-  //   axios
-  //     .post(`${API_BASE}/sessions.json`)
-  //     .then(res => {
-  //             res.data.key = res.data.id;
-  //             this.setState({ locations: [...this.state.locations, res.data] });
-  //             this.clearForm();
-  //           })
-  //     .catch(err => {
-  //              console.log(err);
-  //              this.setAlertError(err, "Could not submit the session.");
-  //            });
-  // }
+  submitSession(endProvider, endLocation, endStudents) {
+    const newSession = {
+      time: new Date(),
+      provider_id: endProvider.id,
+      location_id: endLocation.id,
+    };
+
+    axios
+      .post(`${API_BASE}/sessions.json`, newSession)
+      .then(res => {
+              res.data.key = res.data.id;
+              console.log("Session submitted!");
+            })
+      .catch(err => {
+               console.log(err);
+               this.setAlertError(err, "Could not submit the session.");
+             });
+  }
 
   setAlert(variant, text) {
     this.setState({
