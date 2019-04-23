@@ -9,34 +9,36 @@ import './History.css'
 const API_BASE = 'http://localhost:8000';
 
 const HistoryListItem = (props) => {
+  const dateTime = new Date(props.historyItem.time);
   return (
-    <tr>
-      <td className="col-md-3">{props.time}</td>
-      <td className="col-md-3">{props.provider}</td>
-      <td className="col-md-3">{props.location}</td>
-      <td className="col-md-3">
+    <tr className="historyRow">
+      <td className="col-md-1"/>
+      <td className="col-md-2">{dateTime.toLocaleDateString()}</td>
+      <td className="col-md-2">{dateTime.toLocaleTimeString()}</td>
+      <td className="col-md-2">{props.historyItem.provider ? props.historyItem.provider.username : "NA"}</td>
+      <td className="col-md-2">{props.historyItem.location ? props.historyItem.location.name : "NA"}</td>
+      <td className="col-md-2">
         <ButtonGroup aria-label="CRUD buttons">
           <Button variant="primary" size="sm">
             <i className="fa fa-eye"/> View
           </Button>
+          <Button variant="danger" size="sm">
+            <i className="fa fa-trash"/> Delete
+          </Button>
         </ButtonGroup>
       </td>
+      <td className="col-md-1"/>
     </tr>
   );
 }
 
 const HistoryList = (props) => {
-  const historyItems = props.history.map((history) => {
+  const historyItems = props.history.map((historyItem) => {
     return (
-      <HistoryListItem
-        time={history.time}
-        provider={history.provider}
-        location={history.location}
-        id={history.id}
-        key={history.id}
-        onDelete={props.onDelete}
-        onEdit={props.onEdit}
-      />
+      <HistoryListItem historyItem={historyItem}
+                       key={historyItem.id}
+                       onDelete={props.onDelete}
+                       onEdit={props.onEdit} />
     )
   });
 
@@ -45,10 +47,13 @@ const HistoryList = (props) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th className="col-md-3">Time</th>
-            <th className="col-md-3">Provider</th>
-            <th className="col-md-3">Location</th>
-            <th className="col-md-3">Actions</th>
+            <th className="col-md-1"/>
+            <th className="col-md-2">Date</th>
+            <th className="col-md-2">Time</th>
+            <th className="col-md-2">Provider</th>
+            <th className="col-md-2">Location</th>
+            <th className="col-md-2">Actions</th>
+            <th className="col-md-1"/>
           </tr>
         </thead>
         <tbody>
@@ -84,11 +89,8 @@ class History extends React.Component {
         <NotificationAlert active={this.state.alertActive}
                            variant={this.state.alertVariant}
                            text={this.state.alertText} />
-        <HistoryList
-          history={this.state.historyItems}
-          onDelete={(id) => this.removeHistory(id)}
-          onEdit={(mode,history) => this.updateForm(mode,history)}
-        />
+        <HistoryList history={this.state.historyItems}
+                     onDelete={(id) => this.removeHistory(id)} />
       </div>
     );
   }
@@ -128,9 +130,9 @@ class History extends React.Component {
     axios
       .get(`${API_BASE}/sessions.json`)
       .then(res => {
-              this.setState({ history: res.data });
+              this.setState({ historyItems: res.data });
               this.clearAlert();
-              console.log(`Data loaded! = ${this.state.history}`);
+              console.log(`Data loaded! = ${this.state.historyItems.length}`);
             })
       .catch(err => {
                console.log(err);
