@@ -12,10 +12,12 @@ const SessionRow = (props) => {
   const dateTime = new Date(props.sessionData.time);
   return (
     <tr className="historyRow">
-      <td className="col-md-1"/>
       <td className="col-md-2">{dateTime.toLocaleDateString()}</td>
       <td className="col-md-2">{dateTime.toLocaleTimeString()}</td>
-      <td className="col-md-2">{props.sessionData.provider.username ? props.sessionData.provider.username : "NA"}</td>
+      <td className="col-md-3">
+        {props.sessionData.provider.fname ? props.sessionData.provider.fname : "NA"}&nbsp;
+        {props.sessionData.provider.lname ? props.sessionData.provider.lname : ""}
+      </td>
       <td className="col-md-2">{props.sessionData.location.name ? props.sessionData.location.name : "NA"}</td>
       <td className="col-md-3">
         <ButtonGroup aria-label="CRUD buttons">
@@ -47,10 +49,9 @@ const SessionList = (props) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th className="col-md-1"/>
             <th className="col-md-2">Date</th>
             <th className="col-md-2">Time</th>
-            <th className="col-md-2">Provider</th>
+            <th className="col-md-3">Provider</th>
             <th className="col-md-2">Location</th>
             <th className="col-md-3">Actions</th>
           </tr>
