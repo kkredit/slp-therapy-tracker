@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import NotificationAlert from '../helpers/NotificationAlert.js'
@@ -7,8 +6,6 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
 import './Locations.css'
-
-const API_BASE = 'http://localhost:8000';
 
 function getClearFormId(currentId) {
   return (currentId === "999999") ? "888888" : "999999";
@@ -164,7 +161,7 @@ const LocationList = (props) => {
   );
 }
 
-class Locations extends React.Component {
+export default class Locations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -179,11 +176,10 @@ class Locations extends React.Component {
     this.clearAlert = this.clearAlert.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.clearForm = this.clearForm.bind(this);
-    this.loadLocations = this.loadLocations.bind(this);
+    this.formSubmitted = this.formSubmitted.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
     this.addLocation = this.addLocation.bind(this);
     this.updateLocation = this.updateLocation.bind(this);
-    this.formSubmitted = this.formSubmitted.bind(this);
   }
 
   static getDerivedStateFromProps(props) {
@@ -241,11 +237,6 @@ class Locations extends React.Component {
     });
   }
 
-  componentDidMount() {
-    console.log('Locations mounted!')
-    this.loadLocations();
-  }
-
   updateForm(mode, locationVals) {
     this.clearAlert();
     this.setState({
@@ -256,64 +247,7 @@ class Locations extends React.Component {
 
   clearForm() {
     this.clearAlert();
-    console.log("clear form");
     this.updateForm("new", {name: "", id: getClearFormId(this.state.location.id)});
-  }
-
-  loadLocations() {
-    axios
-      .get(`${API_BASE}/locations.json`)
-      .then(res => {
-              this.setState({ locations: res.data });
-              this.clearAlert();
-              console.log(`Data loaded! = ${this.state.db.locations}`);
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not load current locations.");
-             });
-  }
-
-  addLocation(newLocation) {
-    axios
-      .post(`${API_BASE}/locations.json`, newLocation)
-      .then(res => {
-              res.data.key = res.data.id;
-              this.setState({ locations: [...this.state.locations, res.data] });
-              this.clearForm();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not add location. Try a different name.");
-             });
-    }
-
-  updateLocation(location) {
-    axios
-      .put(`${API_BASE}/locations/${location.id}.json`, location)
-      .then(res => {
-              this.loadLocations();
-              this.clearForm();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not update location. Try a different name.");
-             });
-  }
-
-  removeLocation(id) {
-    let filteredArray = this.state.locations.filter(item => item.id !== id)
-    this.setState({locations: filteredArray});
-    axios
-      .delete(`${API_BASE}/locations/${id}.json`)
-      .then(res => {
-              console.log(`Record Deleted`);
-              this.clearAlert();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not remove location.");
-             });
   }
 
   formSubmitted(location) {
@@ -323,6 +257,25 @@ class Locations extends React.Component {
       this.updateLocation(location);
     }
   }
-};
 
-export default Locations;
+  addLocation(newLocation) {
+    this.state.db.postLocation(newLocation, this.clearForm,
+                               (err) => {
+                                 this.setAlertError(err, "Could not add location. Try a different name.");
+                               });
+  }
+
+  updateLocation(location) {
+    this.state.db.putLocation(location, this.clearForm,
+                              (err) => {
+                                this.setAlertError(err, "Could not update location. Try a different name.");
+                              });
+  }
+
+  removeLocation(id) {
+    this.state.db.deleteLocation(id, this.clearAlert,
+                                 (err) => {
+                                   this.setAlertError(err, "Could not delete location.");
+                                 });
+  }
+};

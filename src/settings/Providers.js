@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import NotificationAlert from '../helpers/NotificationAlert.js'
@@ -7,8 +6,6 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
 import './Providers.css'
-
-const API_BASE = 'http://localhost:8000';
 
 function getClearFormId(currentId) {
   return (currentId === "999999") ? "888888" : "999999";
@@ -229,11 +226,11 @@ const ProviderList = (props) => {
   );
 }
 
-class Providers extends React.Component {
+export default class Providers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      providers: [],
+      db: props.db,
       formMode: "new",
       provider: {lname:"", fname:"", username:"", email:"", id: "999999"},
       alertActive: false,
@@ -244,11 +241,16 @@ class Providers extends React.Component {
     this.clearAlert = this.clearAlert.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.clearForm = this.clearForm.bind(this);
-    this.loadProviders = this.loadProviders.bind(this);
+    this.formSubmitted = this.formSubmitted.bind(this);
     this.removeProvider = this.removeProvider.bind(this);
     this.addProvider = this.addProvider.bind(this);
     this.updateProvider = this.updateProvider.bind(this);
-    this.formSubmitted = this.formSubmitted.bind(this);
+  }
+
+  static getDerivedStateFromProps(props) {
+    return {
+      db: props.db
+    };
   }
 
   render() {
@@ -266,7 +268,7 @@ class Providers extends React.Component {
           key={this.state.provider.id}
         />
         <ProviderList
-          providers={this.state.providers}
+          providers={this.state.db.providers}
           onDelete={(id) => this.removeProvider(id)}
           onEdit={(mode,provider) => this.updateForm(mode,provider)}
         />
@@ -300,11 +302,6 @@ class Providers extends React.Component {
     });
   }
 
-  componentDidMount() {
-    console.log('Providers mounted!')
-    this.loadProviders();
-  }
-
   updateForm(mode, providerVals) {
     this.clearAlert();
     this.setState({
@@ -315,65 +312,8 @@ class Providers extends React.Component {
 
   clearForm() {
     this.clearAlert();
-    console.log("clear form");
     this.updateForm("new", {fname:"", lname:"", email:"", username:"",
                             id: getClearFormId(this.state.provider.id)});
-  }
-
-  loadProviders() {
-    axios
-      .get(`${API_BASE}/providers.json`)
-      .then(res => {
-              this.setState({ providers: res.data });
-              this.clearAlert();
-              console.log(`Data loaded! = ${this.state.providers}`);
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not load current providers.");
-             });
-  }
-
-  addProvider(newProvider) {
-    axios
-      .post(`${API_BASE}/providers.json`, newProvider)
-      .then(res => {
-              res.data.key = res.data.id;
-              this.setState({ providers: [...this.state.providers, res.data] });
-              this.clearForm();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not add provider. Try a different username.");
-             });
-    }
-
-  updateProvider(provider) {
-    axios
-      .put(`${API_BASE}/providers/${provider.id}.json`, provider)
-      .then(res => {
-              this.loadProviders();
-              this.clearForm();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not update provider. Try a different username.");
-             });
-  }
-
-  removeProvider(id) {
-    let filteredArray = this.state.providers.filter(item => item.id !== id)
-    this.setState({providers: filteredArray});
-    axios
-      .delete(`${API_BASE}/providers/${id}.json`)
-      .then(res => {
-              console.log(`Record Deleted`);
-              this.clearAlert();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not remove provider.");
-             });
   }
 
   formSubmitted(provider) {
@@ -383,6 +323,25 @@ class Providers extends React.Component {
       this.updateProvider(provider);
     }
   }
-};
 
-export default Providers;
+  addProvider(newProvider) {
+    this.state.db.postProvider(newProvider, this.clearForm,
+                               (err) => {
+                                 this.setAlertError(err, "Could not add provider. Try a different username.");
+                               });
+  }
+
+  updateProvider(provider) {
+    this.state.db.putProvider(provider, this.clearForm,
+                              (err) => {
+                                this.setAlertError(err, "Could not update provider. Try a different username.");
+                              });
+  }
+
+  removeProvider(id) {
+    this.state.db.deleteProvider(id, this.clearAlert,
+                                 (err) => {
+                                   this.setAlertError(err, "Could not delete provider.");
+                                 });
+  }
+};

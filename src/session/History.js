@@ -1,12 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import NotificationAlert from '../helpers/NotificationAlert.js'
 
 import './History.css'
-
-const API_BASE = 'http://localhost:8000';
 
 const SessionRow = (props) => {
   const dateTime = new Date(props.sessionData.time);
@@ -36,6 +33,7 @@ const SessionRow = (props) => {
 const SessionList = (props) => {
   const sessionRows = props.db.sessions.map((session) => {
     let sessionData = props.db.buildSessionData(session);
+    console.log(sessionData);
     return (
       <SessionRow sessionData={sessionData}
                   key={session.id}
@@ -133,18 +131,7 @@ class History extends React.Component {
   }
 
   removeHistory(id) {
-    let filteredArray = this.state.sessions.filter(item => item.id !== id);
-    this.setState({sessions: filteredArray});
-    axios
-      .delete(`${API_BASE}/sessions/${id}.json`)
-      .then(res => {
-              console.log(`Record Deleted`);
-              this.clearAlert();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not remove session.");
-             });
+    this.state.db.deleteSession(id);
   }
 };
 

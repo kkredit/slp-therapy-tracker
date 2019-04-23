@@ -21,19 +21,26 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.isConnected = this.isConnected.bind(this);
+    this.dbUpdatedCb = this.dbUpdatedCb.bind(this);
+    this.dbInitialLoadCb = this.dbInitialLoadCb.bind(this);
 
     this.state = {
       db: new Database({
         apiBase: API_BASE,
-        loadedCallback: this.isConnected,
+        initialLoadCb: this.dbInitialLoadCb,
+        updatedCb: this.dbUpdatedCb,
       }),
-      connected: false,
+      dbLoaded: false,
+      dbHasUpdate: false,
     };
   }
 
-  isConnected() {
-    this.setState({connected: true});
+  dbUpdatedCb() {
+    this.setState({dbHasUpdate: true});
+  }
+
+  dbInitialLoadCb() {
+    this.setState({dbLoaded: true});
   }
 
   componentDidMount() {
@@ -42,7 +49,7 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.connected) {
+    if (!this.state.dbLoaded) {
       return (
         <div className="App">
           <header className="App-header">
