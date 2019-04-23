@@ -15,8 +15,8 @@ const SessionRow = (props) => {
       <td className="col-md-1"/>
       <td className="col-md-2">{dateTime.toLocaleDateString()}</td>
       <td className="col-md-2">{dateTime.toLocaleTimeString()}</td>
-      <td className="col-md-2">{props.sessionData.provider ? props.sessionData.provider.username : "NA"}</td>
-      <td className="col-md-2">{props.sessionData.location ? props.sessionData.location.name : "NA"}</td>
+      <td className="col-md-2">{props.sessionData.provider.username ? props.sessionData.provider.username : "NA"}</td>
+      <td className="col-md-2">{props.sessionData.location.name ? props.sessionData.location.name : "NA"}</td>
       <td className="col-md-3">
         <ButtonGroup aria-label="CRUD buttons">
           <Button variant="primary" size="sm" onClick={event => props.onView(props.sessionData.id)}>

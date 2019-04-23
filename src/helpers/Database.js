@@ -3,9 +3,11 @@ import axios from 'axios'
 
 export default class Database {
   constructor(props) {
+    // Class data
     this.apiBase = props.apiBase;
     this.loadedCallback = props.loadedCallback;
 
+    // Database data
     this.locations = [];
     this.providers = [];
     this.sessions = [];
@@ -13,8 +15,13 @@ export default class Database {
     this.goals = [];
     this.attempts = [];
 
+    // Functions data
     this.buildSessionData = this.buildSessionData.bind(this);
     this.getLocationFromId = this.getLocationFromId.bind(this);
+    this.getProviderFromId = this.getProviderFromId.bind(this);
+    this.getStudentsFromSession = this.getStudentsFromSession.bind(this);
+    this.getGoalsFromStudent = this.getGoalsFromStudent.bind(this);
+    this.getAttemptsFromGoal = this.getAttemptsFromGoal.bind(this);
 
     this.loadAll = this.loadAll.bind(this);
     this.loadedCallback = this.loadedCallback.bind(this);
@@ -28,19 +35,42 @@ export default class Database {
   }
 
   buildSessionData(session) {
-    let sessionData = {
+    let students = this.getStudentsFromSession(session);
+    students.forEach(student => {
+      student.goals = this.getGoalsFromStudent(student);
+      student.goals.forEach(goal => {
+        goal.attempts = this.getAttemptsFromGoal(goal);
+      });
+    });
+    const sessionData = {
       id: session.id,
       time: session.time,
-      location: session.location_id,
-      provider: session.provider_id,
-      students: [],
+      location: this.getLocationFromId(session.location_id),
+      provider: this.getProviderFromId(session.provider_id),
+      students: students,
     };
-    console.log(this.getLocationFromId(session.location_id));
+    console.log(sessionData);
     return sessionData;
   }
 
   getLocationFromId(id) {
-    return this.locations.filter(loc => loc.id === id)[0];
+    return this.locations.filter(location => location.id === id)[0];
+  }
+
+  getProviderFromId(id) {
+    return this.providers.filter(provider => provider.id === id)[0];
+  }
+
+  getStudentsFromSession(session) {
+    return this.students.filter(student => student.session_id === session.id);
+  }
+
+  getGoalsFromStudent(student) {
+    return this.goals.filter(student => student.student_id === student.id);
+  }
+
+  getAttemptsFromGoal(goal) {
+    return this.attempts.filter(attempt => attempt.goal_id === goal.id);
   }
 
   loadAll() {
