@@ -165,9 +165,9 @@ export default class Database {
     axios
       .post(`${this.apiBase}${apiUrl}`, resource)
       .then(res => {
+              resource.id = res.data.id;
               resourceArray.push(resource);
               console.log(`${name} added`);
-              console.log(res);
               this.dbUpdatedCb();
               thenCb(res.data);
             })
@@ -253,14 +253,12 @@ export default class Database {
   //////////////////////////////////////////////////////////////////////////////////////////////////
   postLocation(newLocation, thenCb, catchCb) {
     this.postResource(`location ${newLocation.id}`, '/locations.json', this.locations, newLocation,
-                      thenCb, (err) => {catchCb(err)});
-    this.getLocations(Function.prototype, Function.prototype);
+                      (data) => {thenCb(data)}, (err) => {catchCb(err)});
   }
 
   postProvider(newProvider, thenCb, catchCb) {
     this.postResource(`provider ${newProvider.id}`, '/providers.json', this.providers, newProvider,
-                      thenCb, (err) => {catchCb(err)});
-    this.getProviders(Function.prototype, Function.prototype);
+                      (data) => {thenCb(data)}, (err) => {catchCb(err)});
   }
 
   postSession(location, provider, students, thenCb, catchCb) {
@@ -292,7 +290,6 @@ export default class Database {
     }
 
     const thenPostGoals = function (student, catchCb) {
-      console.log(student);
       student.goals.forEach(goal => {
           const goalObj = {
             id: "999999",
@@ -309,7 +306,6 @@ export default class Database {
     }
 
     const thenPostStudents = function (sessionId, catchCb) {
-      console.log(students);
       students.forEach(student => {
           const studentObj = {
             id: "999999",
