@@ -43,15 +43,15 @@ class Developer extends React.Component {
         <p>
           The backend is exposes the following API. All data is accessible as JSON and XML. Crude
           HTML pages may exist, but are not officially supported.
-          <ul>
-            <li><b>/providers :</b> Create, read, update, and delete provider first and last names, usernames, and emails.</li>
-            <li><b>/locations :</b> Create, read, update, and delete location names.</li>
-            <li><b>/sessions :</b> Create, read, update, and delete session times and their associated providers and locations.</li>
-            <li><b>/students :</b> Create, read, update, and delete student numbers and their associated sessions.</li>
-            <li><b>/goals :</b> Create, read, update, and delete goal numbers and their associated students.</li>
-            <li><b>/attempts :</b> Create, read, update, and delete attempt performances and their associated goals.</li>
-          </ul>
         </p>
+        <ul>
+          <li><b>/providers :</b> Create, read, update, and delete provider first and last names, usernames, and emails.</li>
+          <li><b>/locations :</b> Create, read, update, and delete location names.</li>
+          <li><b>/sessions :</b> Create, read, update, and delete session times and their associated providers and locations.</li>
+          <li><b>/students :</b> Create, read, update, and delete student numbers and their associated sessions.</li>
+          <li><b>/goals :</b> Create, read, update, and delete goal numbers and their associated students.</li>
+          <li><b>/attempts :</b> Create, read, update, and delete attempt performances and their associated goals.</li>
+        </ul>
 
         <h3 className="subheader">Disclaimer</h3>
         <p>
