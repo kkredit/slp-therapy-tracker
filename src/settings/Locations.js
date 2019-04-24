@@ -64,7 +64,7 @@ class LocationForm extends React.Component {
                 defaultValue={this.state.name}
                 onChange={e => this.handleInputChange(e)}
                 type="text"
-                placeholder="e.g., 'Lincoln Memorial Elementary School' or 'LMES'"
+                placeholder="Room 5"
                 pattern="[a-zA-Z.0-9 ]{3,60}"
                 required
               />

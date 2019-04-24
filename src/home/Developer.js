@@ -25,7 +25,7 @@ class Developer extends React.Component {
             <i className="fa fa-github"/> here
           </a>.
           The backend app is hosted&nbsp;
-          <a href="/#">
+          <a href="https://slpttb.herokuapp.com/">
             here
           </a>
           ; the code is available&nbsp;
@@ -41,15 +41,15 @@ class Developer extends React.Component {
           outside of this application, it will fail. The APIs provided are listed here.
         </p>
         <p>
-          The backend is exposes the following API: (TODO fill in detail)
+          The backend is exposes the following API. All data is accessible as JSON and XML. Crude
+          HTML pages may exist, but are not officially supported.
           <ul>
-            <li>Providers</li>
-              <p>test</p>
-            <li>Locations</li>
-            <li>Sessions</li>
-            <li>Students</li>
-            <li>Goals</li>
-            <li>Attempts</li>
+            <li><b>/providers :</b> Create, read, update, and delete provider first and last names, usernames, and emails.</li>
+            <li><b>/locations :</b> Create, read, update, and delete location names.</li>
+            <li><b>/sessions :</b> Create, read, update, and delete session times and their associated providers and locations.</li>
+            <li><b>/students :</b> Create, read, update, and delete student numbers and their associated sessions.</li>
+            <li><b>/goals :</b> Create, read, update, and delete goal numbers and their associated students.</li>
+            <li><b>/attempts :</b> Create, read, update, and delete attempt performances and their associated goals.</li>
           </ul>
         </p>
 
