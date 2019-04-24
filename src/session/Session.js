@@ -82,28 +82,11 @@ class Session extends React.Component {
   }
 
   submitSession(endProvider, endLocation, endStudents) {
-    // const newSession = {
-    //   time: new Date(),
-    //   provider_id: endProvider.id,
-    //   location_id: endLocation.id,
-    //   students: endStudents
-    // };
     this.state.db.postSession(endLocation, endProvider, endStudents,
                               this.clearAlert,
                               (err) => {
                                 this.setAlertError(err, "Could not add session.");
                               });
-
-    // axios
-    //   .post(`${API_BASE}/sessions.json`, newSession)
-    //   .then(res => {
-    //           res.data.key = res.data.id;
-    //           console.log("Session submitted!");
-    //         })
-    //   .catch(err => {
-    //            console.log(err);
-    //            this.setAlertError(err, "Could not submit the session.");
-    //          });
   }
 
   setAlert(variant, text) {
