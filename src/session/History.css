@@ -1,3 +1,18 @@
 .historyRow {
   font-size: 10.5pt;
 }
+
+.modalHeader {
+  /* text-align: center;
+  font-weight: bold;
+  font-size: 11pt; */
+}
+
+.modalStudentHeader {
+  /* text-align: center;
+  font-size: 10.5pt; */
+}
+
+.modalData .modalStudentData {
+  /* text-align: center; */
+}

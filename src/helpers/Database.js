@@ -92,7 +92,7 @@ export default class Database {
   }
 
   getGoalsFromStudent(student) {
-    return this.goals.filter(student => student.student_id === student.id);
+    return this.goals.filter(goal => goal.student_id === student.id);
   }
 
   getAttemptsFromGoal(goal) {
@@ -293,7 +293,7 @@ export default class Database {
   postSession(location, provider, students, thenCb, catchCb) {
     const sessionObj = {
       time: new Date(),
-      id: "999999",
+      // id: "999999",
       provider_id: provider.id,
       location_id: location.id,
     };
@@ -307,7 +307,7 @@ export default class Database {
       var num = 0;
       goal.attempts.forEach(attempt => {
           const attemptObj = {
-            id: "999999",
+            // id: "999999",
             goal_id: goal.id,
             number: num,
             status: attempt,
@@ -321,7 +321,7 @@ export default class Database {
     const thenPostGoals = function (student, catchCb) {
       student.goals.forEach(goal => {
           const goalObj = {
-            id: "999999",
+            // id: "999999",
             student_id: student.id,
             number: goal.number
           };
@@ -337,7 +337,7 @@ export default class Database {
     const thenPostStudents = function (sessionId, catchCb) {
       students.forEach(student => {
           const studentObj = {
-            id: "999999",
+            // id: "999999",
             session_id: sessionId,
             number: student.number
           };
@@ -349,9 +349,9 @@ export default class Database {
       });
     }
 
-    this.postResource(`session ${sessionObj.id}`, '/sessions.json', this.sessions, sessionObj,
+    this.postResource(`session ${sessionObj.time}`, '/sessions.json', this.sessions, sessionObj,
                       (data) => {
-                        thenPostStudents(data.id, Function.prototype, (err) => {catchCb(err)});
+                        thenPostStudents(data.id, (err) => {catchCb(err)});
                         thenCb();
                       }, (err) => {catchCb(err)});
   }

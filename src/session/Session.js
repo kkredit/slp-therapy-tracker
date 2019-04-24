@@ -89,7 +89,10 @@ class Session extends React.Component {
     //   students: endStudents
     // };
     this.state.db.postSession(endLocation, endProvider, endStudents,
-                              Function.prototype, Function.prototype);
+                              this.clearAlert,
+                              (err) => {
+                                this.setAlertError(err, "Could not add session.");
+                              });
 
     // axios
     //   .post(`${API_BASE}/sessions.json`, newSession)
