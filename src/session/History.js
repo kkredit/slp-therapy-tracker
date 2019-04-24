@@ -15,7 +15,6 @@ function percent(dividend, divisor) {
 }
 
 function getGoalStats(goal) {
-  console.log(goal);
   const total = goal.attempts.length;
   if (total === 0) {
     return "No attempts";
@@ -30,7 +29,6 @@ function getGoalStats(goal) {
 
 const StudentRow = (props) => {
   const numGoals = props.student.goals.length;
-  console.log(numGoals + " goals")
 
   return (
     <Row>
@@ -168,7 +166,6 @@ const SessionList = (props) => {
     return (
       <SessionRow sessionData={sessionData}
                   key={session.id}
-                  onView={props.onView}
                   onDelete={props.onDelete} />
     )
   });
@@ -205,7 +202,6 @@ class History extends React.Component {
     this.setAlert = this.setAlert.bind(this);
     this.setAlertError = this.setAlertError.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
-    this.viewHistory = this.viewHistory.bind(this);
     this.removeHistory = this.removeHistory.bind(this);
   }
 
@@ -223,7 +219,6 @@ class History extends React.Component {
                            variant={this.state.alertVariant}
                            text={this.state.alertText} />
         <SessionList db={this.state.db}
-                     onView={(id) => this.viewHistory(id)}
                      onDelete={(id) => this.removeHistory(id)} />
       </div>
     );
@@ -253,10 +248,6 @@ class History extends React.Component {
       alertVariant: '',
       alertText: ''
     });
-  }
-
-  viewHistory(id) {
-    console.log("trying to view history item ID: " + id);
   }
 
   removeHistory(id) {
