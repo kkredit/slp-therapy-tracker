@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Static page 1`] = `
+Array [
+  <h1>
+    SLP Therapy Tracker
+  </h1>,
+  <a
+    className="btn btn-primary btn-lg"
+    href="/session"
+    id="mainButton"
+    onClick={[Function]}
+  >
+    Start a session 
+    <i
+      className="fa fa-arrow-circle-o-right"
+    />
+  </a>,
+  <p>
+    This app is designed to ease data collection for Speech and Language Pathologists. Made with &lt;3 for Kristen.
+  </p>,
+  <h3
+    className="subheader"
+  >
+    How to Use
+  </h3>,
+  <ol>
+    <li>
+      Enter your data in the "Providers" form
+    </li>
+    <li>
+      Enter service location names in the "Locations" form
+    </li>
+    <li>
+      Enter session data in the "Session" page
+    </li>
+    <li>
+      View historical session data in the "History" page
+    </li>
+  </ol>,
+  <a
+    className="navButton btn btn-outline-primary"
+    href="/providers"
+    onClick={[Function]}
+  >
+    Update Providers 
+    <i
+      className="fa fa-arrow-circle-right"
+    />
+  </a>,
+  <a
+    className="navButton btn btn-outline-primary"
+    href="/locations"
+    onClick={[Function]}
+  >
+    Update Locations 
+    <i
+      className="fa fa-arrow-circle-right"
+    />
+  </a>,
+  <h3
+    className="subheader"
+  >
+    More Info
+  </h3>,
+  <p>
+    This app was made as a class project. See more info at the developer page.
+  </p>,
+  <a
+    className="navButton btn btn-outline-primary"
+    href="/developer"
+    onClick={[Function]}
+  >
+    Developer page
+  </a>,
+  <h3
+    className="subheader"
+  >
+    Disclaimer
+  </h3>,
+  <p>
+    This app is a class project. There is no authentication. The user is solely responsible for all information that is uploaded to this site.
+  </p>,
+]
+`;

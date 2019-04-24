@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Alert turns on 1`] = `
+<div
+  className="fade notification alert show"
+  role="alert"
+/>
+`;
+
+exports[`Snapshots No alert is default 1`] = `null`;

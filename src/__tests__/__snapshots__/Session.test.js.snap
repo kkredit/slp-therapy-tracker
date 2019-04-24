@@ -1,0 +1,313 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Blank data entry when inSetup is false 1`] = `
+Array [
+  <h1>
+     Record a Session 
+  </h1>,
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      />
+      <div
+        className="col-2"
+      >
+        <a
+          className="sideNavButton btn btn-light btn-lg"
+          href="/history"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-2x fa-fw fa-angle-double-left"
+          />
+        </a>
+      </div>
+      <div
+        className="col-4"
+      >
+        <div
+          className="card bg-secondary border-primary"
+          id="setupCard"
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="card-title h5"
+            >
+               Setup a new session 
+            </div>
+            <p
+              className="card-text"
+            >
+              Select how many students will be in this session and how many goals each will have.
+            </p>
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Provider 
+            </div>
+            <select
+              className="form-control"
+              name="provider"
+              onChange={[Function]}
+            />
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Location 
+            </div>
+            <select
+              className="form-control"
+              name="location"
+              onChange={[Function]}
+            />
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Number of students 
+            </div>
+            <button
+              className="setupButton btn btn-primary btn-sm"
+              disabled={true}
+              onClick={[Function]}
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-minus"
+              />
+            </button>
+            1
+            <button
+              className="setupButton btn btn-primary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-plus"
+              />
+            </button>
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Number of goals 
+            </div>
+            <div>
+              Student 
+              1
+              :
+              <button
+                className="setupButton btn btn-primary btn-sm"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-minus"
+                />
+              </button>
+              1
+              <button
+                className="setupButton btn btn-primary btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-plus"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-2"
+      >
+        <button
+          className="sideNavButton btn btn-success btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-2x fa-fw fa-angle-right"
+          />
+        </button>
+      </div>
+      <div
+        className="col"
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`Snapshots Initial setup 1`] = `
+Array [
+  <h1>
+     Record a Session 
+  </h1>,
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      />
+      <div
+        className="col-2"
+      >
+        <a
+          className="sideNavButton btn btn-light btn-lg"
+          href="/history"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-2x fa-fw fa-angle-double-left"
+          />
+        </a>
+      </div>
+      <div
+        className="col-4"
+      >
+        <div
+          className="card bg-secondary border-primary"
+          id="setupCard"
+        >
+          <div
+            className="card-body"
+          >
+            <div
+              className="card-title h5"
+            >
+               Setup a new session 
+            </div>
+            <p
+              className="card-text"
+            >
+              Select how many students will be in this session and how many goals each will have.
+            </p>
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Provider 
+            </div>
+            <select
+              className="form-control"
+              name="provider"
+              onChange={[Function]}
+            />
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Location 
+            </div>
+            <select
+              className="form-control"
+              name="location"
+              onChange={[Function]}
+            />
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Number of students 
+            </div>
+            <button
+              className="setupButton btn btn-primary btn-sm"
+              disabled={true}
+              onClick={[Function]}
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-minus"
+              />
+            </button>
+            1
+            <button
+              className="setupButton btn btn-primary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-plus"
+              />
+            </button>
+            <div
+              className="mb-2 setup-hdr card-subtitle h6"
+            >
+               Number of goals 
+            </div>
+            <div>
+              Student 
+              1
+              :
+              <button
+                className="setupButton btn btn-primary btn-sm"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-minus"
+                />
+              </button>
+              1
+              <button
+                className="setupButton btn btn-primary btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  className="fa fa-plus"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col-2"
+      >
+        <button
+          className="sideNavButton btn btn-success btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-2x fa-fw fa-angle-right"
+          />
+        </button>
+      </div>
+      <div
+        className="col"
+      />
+    </div>
+  </div>,
+]
+`;

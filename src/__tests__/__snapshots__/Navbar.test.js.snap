@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Static page 1`] = `
+<div
+  className="Navbar nav nav-pills"
+  onKeyDown={[Function]}
+>
+  <div
+    className="nav-item"
+  >
+    <a
+      aria-current="page"
+      className="nav-link active"
+      href="/"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      Home
+    </a>
+  </div>
+  <div
+    className="nav-item"
+  >
+    <a
+      aria-current={null}
+      className="nav-link"
+      href="/history"
+      onClick={[Function]}
+    >
+      History
+    </a>
+  </div>
+  <div
+    className="nav-item"
+  >
+    <a
+      aria-current={null}
+      className="nav-link"
+      href="/session"
+      onClick={[Function]}
+    >
+      Session
+    </a>
+  </div>
+</div>
+`;
