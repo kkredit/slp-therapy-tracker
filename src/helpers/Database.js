@@ -20,6 +20,7 @@ export default class Database {
     this.buildSessionData = this.buildSessionData.bind(this);
     this.getLocationFromId = this.getLocationFromId.bind(this);
     this.getProviderFromId = this.getProviderFromId.bind(this);
+    this.getSessionFromId = this.getSessionFromId.bind(this);
     this.getStudentsFromSession = this.getStudentsFromSession.bind(this);
     this.getGoalsFromStudent = this.getGoalsFromStudent.bind(this);
     this.getAttemptsFromGoal = this.getAttemptsFromGoal.bind(this);
@@ -80,6 +81,10 @@ export default class Database {
 
   getProviderFromId(id) {
     return this.providers.filter(provider => provider.id === id)[0];
+  }
+
+  getSessionFromId(id) {
+    return this.sessions.filter(session => session.id === id)[0];
   }
 
   getStudentsFromSession(session) {
@@ -145,13 +150,13 @@ export default class Database {
   }
 
   deleteResource(name, apiUrl, resourceArray, id, filteredCb, thenCb, catchCb) {
+    const filteredArray = resourceArray.filter(item => item.id !== id);
+    filteredCb(filteredArray);
+    this.dbUpdatedCb();
     axios
       .delete(`${this.apiBase}${apiUrl}`)
       .then(res => {
-              const filteredArray = resourceArray.filter(item => item.id !== id);
-              filteredCb(filteredArray);
               console.log(`${name} deleted`);
-              this.dbUpdatedCb();
               thenCb();
             })
       .catch(err => {
@@ -241,11 +246,35 @@ export default class Database {
   }
 
   deleteSession(id, thenCb, catchCb) {
+    const sessionData = this.buildSessionData(this.getSessionFromId(id));
+
+    // TODO: if can get on-cascade-delete to work, maybe don't need this?
+    sessionData.students.forEach(student => {
+      student.goals.forEach(goal => {
+        goal.attempts.forEach(attempt => {
+          this.deleteResource(`attempt ${attempt.id}`, `/attempts/${attempt.id}.json`, this.attempts, attempt.id,
+                              (filteredArray) => {
+                                this.attempts = filteredArray;
+                              },
+                              thenCb, (err) => {this.getSessions(); catchCb(err)});
+        });
+        this.deleteResource(`goal ${goal.id}`, `/goals/${goal.id}.json`, this.goals, goal.id,
+                            (filteredArray) => {
+                              this.goals = filteredArray;
+                            },
+                            thenCb, (err) => {this.getSessions(); catchCb(err)});
+      });
+      this.deleteResource(`student ${student.id}`, `/students/${student.id}.json`, this.students, student.id,
+                          (filteredArray) => {
+                            this.students = filteredArray;
+                          },
+                          thenCb, (err) => {this.getSessions(); catchCb(err)});
+    });
     this.deleteResource(`session ${id}`, `/sessions/${id}.json`, this.sessions, id,
                         (filteredArray) => {
                           this.sessions = filteredArray;
                         },
-                        thenCb, (err) => {catchCb(err)});
+                        thenCb, (err) => {this.getSessions(Function.prototype, (err) => {catchCb(err)}); catchCb(err)});
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
