@@ -59,12 +59,16 @@ export default class Database {
 
   buildSessionData(session) {
     let students = this.getStudentsFromSession(session);
+    students.sort(function(s1, s2){return s1.number - s2.number;});
+
     students.forEach(student => {
       student.goals = this.getGoalsFromStudent(student);
+      student.goals.sort(function(g1, g2){return g1.number - g2.number;});
       student.goals.forEach(goal => {
         goal.attempts = this.getAttemptsFromGoal(goal);
       });
     });
+
     const sessionData = {
       id: session.id,
       time: session.time,
@@ -72,6 +76,7 @@ export default class Database {
       provider: this.getProviderFromId(session.provider_id) || "NA",
       students: students,
     };
+
     return sessionData;
   }
 
