@@ -139,7 +139,7 @@ class SessionRow extends React.Component {
                 <Col xs={2}><p className="modalData">{locationName}</p></Col>
                 <Col xs={3}>
                   <p className="modalData">
-                    <Button variant="danger" size="sm"
+                    <Button variant="outline-danger" size="sm"
                             onClick={event => this.state.onDelete(this.state.sessionData.id)}>
                       <i className="fa fa-trash"/> Delete
                     </Button>
