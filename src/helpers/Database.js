@@ -251,35 +251,16 @@ export default class Database {
   }
 
   deleteSession(id, thenCb, catchCb) {
-    const sessionData = this.buildSessionData(this.getSessionFromId(id));
-
-    // TODO: if can get on-cascade-delete to work, maybe don't need this?
-    sessionData.students.forEach(student => {
-      student.goals.forEach(goal => {
-        goal.attempts.forEach(attempt => {
-          this.deleteResource(`attempt ${attempt.id}`, `/attempts/${attempt.id}.json`, this.attempts, attempt.id,
-                              (filteredArray) => {
-                                this.attempts = filteredArray;
-                              },
-                              thenCb, (err) => {this.getSessions(); catchCb(err)});
-        });
-        this.deleteResource(`goal ${goal.id}`, `/goals/${goal.id}.json`, this.goals, goal.id,
-                            (filteredArray) => {
-                              this.goals = filteredArray;
-                            },
-                            thenCb, (err) => {this.getSessions(); catchCb(err)});
-      });
-      this.deleteResource(`student ${student.id}`, `/students/${student.id}.json`, this.students, student.id,
-                          (filteredArray) => {
-                            this.students = filteredArray;
-                          },
-                          thenCb, (err) => {this.getSessions(); catchCb(err)});
-    });
+    // The backend performs a cascading delete, so we only need to remove the session!
     this.deleteResource(`session ${id}`, `/sessions/${id}.json`, this.sessions, id,
                         (filteredArray) => {
                           this.sessions = filteredArray;
                         },
-                        thenCb, (err) => {this.getSessions(Function.prototype, (err) => {catchCb(err)}); catchCb(err)});
+                        () => {
+                          this.getSessions(Function.prototype, (err) => {catchCb(err)});
+                          thenCb();
+                        },
+                        (err) => {catchCb(err);});
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
