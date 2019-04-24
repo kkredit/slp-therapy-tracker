@@ -1,29 +1,23 @@
 import React from 'react'
-import axios from 'axios'
 import './Session.css'
 import NotificationAlert from '../helpers/NotificationAlert.js'
 import SessionSetup from './SessionSetup.js'
 import DataEntry from './DataEntry.js'
 import { ATTEMPT_SUCC, ATTEMPT_CUED, ATTEMPT_FAIL } from './Student.js'
 
-const API_BASE = 'http://localhost:8000';
-
 class Session extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      db: props.db,
       alertActive: false,
       alertVariant: '',
       alertText: '',
-      providers: null,
-      locations: null,
       provider: null,
       location: null,
       inSetup: true,
       students: []
     };
-    this.loadProviders = this.loadProviders.bind(this);
-    this.loadLocations = this.loadLocations.bind(this);
     this.startCallback = this.startCallback.bind(this);
     this.endCallback = this.endCallback.bind(this);
     this.submitSession = this.submitSession.bind(this);
@@ -32,9 +26,10 @@ class Session extends React.Component {
     this.clearAlert = this.clearAlert.bind(this);
   }
 
-  componentDidMount() {
-    this.loadProviders();
-    this.loadLocations();
+  static getDerivedStateFromProps(props) {
+    return {
+      db: props.db
+    };
   }
 
   render() {
@@ -46,8 +41,8 @@ class Session extends React.Component {
                            text={this.state.alertText} />
         <SessionSetup active={this.state.inSetup}
                       startCallback={this.startCallback}
-                      providers={this.state.providers}
-                      locations={this.state.locations} />
+                      providers={this.state.db.providers}
+                      locations={this.state.db.locations} />
         <DataEntry active={!this.state.inSetup}
                    students={this.state.students}
                    provider={this.state.provider}
@@ -55,32 +50,6 @@ class Session extends React.Component {
                    endCallback={this.endCallback} />
       </React.Fragment>
     );
-  }
-
-  loadProviders() {
-    axios
-      .get(`${API_BASE}/providers.json`)
-      .then(res => {
-              this.setState({ providers: res.data });
-              this.clearAlert();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not load providers.");
-             });
-  }
-
-  loadLocations() {
-    axios
-      .get(`${API_BASE}/locations.json`)
-      .then(res => {
-              this.setState({ locations: res.data });
-              this.clearAlert();
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not load locations.");
-             });
   }
 
   startCallback(startStudents, startProvider, startLocation) {
@@ -113,22 +82,25 @@ class Session extends React.Component {
   }
 
   submitSession(endProvider, endLocation, endStudents) {
-    const newSession = {
-      time: new Date(),
-      provider_id: endProvider.id,
-      location_id: endLocation.id,
-    };
+    // const newSession = {
+    //   time: new Date(),
+    //   provider_id: endProvider.id,
+    //   location_id: endLocation.id,
+    //   students: endStudents
+    // };
+    this.state.db.postSession(endLocation, endProvider, endStudents,
+                              Function.prototype, Function.prototype);
 
-    axios
-      .post(`${API_BASE}/sessions.json`, newSession)
-      .then(res => {
-              res.data.key = res.data.id;
-              console.log("Session submitted!");
-            })
-      .catch(err => {
-               console.log(err);
-               this.setAlertError(err, "Could not submit the session.");
-             });
+    // axios
+    //   .post(`${API_BASE}/sessions.json`, newSession)
+    //   .then(res => {
+    //           res.data.key = res.data.id;
+    //           console.log("Session submitted!");
+    //         })
+    //   .catch(err => {
+    //            console.log(err);
+    //            this.setAlertError(err, "Could not submit the session.");
+    //          });
   }
 
   setAlert(variant, text) {

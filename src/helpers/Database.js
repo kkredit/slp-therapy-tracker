@@ -47,8 +47,13 @@ export default class Database {
     this.deleteSession = this.deleteSession.bind(this);
 
     // Specific POSTs
+    this.postLocation = this.postLocation.bind(this);
     this.postProvider = this.postProvider.bind(this);
+    this.postSession = this.postSession.bind(this);
+
     // Specific PUTs
+    this.putLocation = this.putLocation.bind(this);
+    this.putProvider = this.putProvider.bind(this);
   }
 
   buildSessionData(session) {
@@ -162,8 +167,9 @@ export default class Database {
       .then(res => {
               resourceArray.push(resource);
               console.log(`${name} added`);
+              console.log(res);
               this.dbUpdatedCb();
-              thenCb();
+              thenCb(res.data);
             })
       .catch(err => {
                console.log(`Could not add ${name}.`);
@@ -255,6 +261,74 @@ export default class Database {
     this.postResource(`provider ${newProvider.id}`, '/providers.json', this.providers, newProvider,
                       thenCb, (err) => {catchCb(err)});
     this.getProviders(Function.prototype, Function.prototype);
+  }
+
+  postSession(location, provider, students, thenCb, catchCb) {
+    const sessionObj = {
+      time: new Date(),
+      id: "999999",
+      provider_id: provider.id,
+      location_id: location.id,
+    };
+
+    const resourcePoster = this.postResource;
+    var attemptsArr = this.attempts;
+    var goalsArr = this.goals;
+    var studentsArr = this.students;
+
+    const thenPostAttempts = function (goal, catchCb) {
+      var num = 0;
+      goal.attempts.forEach(attempt => {
+          const attemptObj = {
+            id: "999999",
+            goal_id: goal.id,
+            number: num,
+            status: attempt,
+          };
+          num++;
+          resourcePoster(`attempt ${attemptObj.number}`, '/attempts.json', attemptsArr, attemptObj,
+                         Function.prototype, (err) => {catchCb(err)});
+      });
+    }
+
+    const thenPostGoals = function (student, catchCb) {
+      console.log(student);
+      student.goals.forEach(goal => {
+          const goalObj = {
+            id: "999999",
+            student_id: student.id,
+            number: goal.number
+          };
+          resourcePoster(`goal ${goalObj.number}`, '/goals.json', goalsArr, goalObj,
+                         (data) => {
+                           goal.id = data.id;
+                           thenPostAttempts(goal, (err) => {catchCb(err)});
+                           thenCb();
+                         }, (err) => {catchCb(err)});
+      });
+    }
+
+    const thenPostStudents = function (sessionId, catchCb) {
+      console.log(students);
+      students.forEach(student => {
+          const studentObj = {
+            id: "999999",
+            session_id: sessionId,
+            number: student.number
+          };
+          resourcePoster(`student ${studentObj.number}`, '/students.json', studentsArr, studentObj,
+                         (data) => {
+                           student.id = data.id;
+                           thenPostGoals(student, (err) => {catchCb(err)});
+                         }, (err) => {catchCb(err)});
+      });
+    }
+
+    this.postResource(`session ${sessionObj.id}`, '/sessions.json', this.sessions, sessionObj,
+                      (data) => {
+                        thenPostStudents(data.id, Function.prototype, (err) => {catchCb(err)});
+                        thenCb();
+                      }, (err) => {catchCb(err)});
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////

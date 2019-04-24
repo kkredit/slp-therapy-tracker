@@ -33,7 +33,6 @@ const SessionRow = (props) => {
 const SessionList = (props) => {
   const sessionRows = props.db.sessions.map((session) => {
     let sessionData = props.db.buildSessionData(session);
-    console.log(sessionData);
     return (
       <SessionRow sessionData={sessionData}
                   key={session.id}
@@ -125,13 +124,14 @@ class History extends React.Component {
   }
 
   viewHistory(id) {
-    let viewSession = this.state.sessions.filter(session => session.id === id)[0];
-    console.log("trying to view history item ID: " + id + ", or " + viewSession.id);
-    console.log(viewSession);
+    console.log("trying to view history item ID: " + id);
   }
 
   removeHistory(id) {
-    this.state.db.deleteSession(id);
+    this.state.db.deleteSession(id, this.clearAlert,
+                                (err) => {
+                                  this.setAlertError(err, "Could not delete session.");
+                                });
   }
 };
 
