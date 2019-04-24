@@ -14,7 +14,7 @@ import Developer from './home/Developer.js'
 import './App.css';
 import logo from './logo.svg';
 
-const API_BASE = 'https://slpttb.herokuapp.com';
+const API_BASE = 'http://localhost:8000';
 
 class App extends Component {
 
