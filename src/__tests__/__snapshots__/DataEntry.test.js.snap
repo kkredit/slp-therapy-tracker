@@ -1,0 +1,721 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Initial data entry 1`] = `
+<div
+  className="container"
+  id="dataContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        sally
+         
+        foreman
+         
+      </h3>
+    </div>
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        testroom1
+         
+      </h3>
+    </div>
+    <div
+      className="col-4"
+    />
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-danger"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-trash"
+        />
+         Discard
+      </button>
+    </div>
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-success"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-save"
+        />
+         Submit
+      </button>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Students 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-9"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Goals 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h4
+        className="studentName"
+      >
+         Student 
+        1
+         
+      </h4>
+    </div>
+    <div
+      className="col-11"
+    >
+      <div
+        className="goalsCarousel carousel slide"
+        onKeyDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <div
+          className="carousel-inner"
+        >
+          <div
+            className="carousel-item active carousel-item"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <h4
+                    className="goalNum"
+                  >
+                     Goal 
+                    1
+                     
+                  </h4>
+                </div>
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                />
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-check"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-circle-o"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-times"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          className="carousel-control-prev"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-left carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-right carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshots New goal when have 2 goals 1`] = `
+<div
+  className="container"
+  id="dataContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        sally
+         
+        foreman
+         
+      </h3>
+    </div>
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        testroom1
+         
+      </h3>
+    </div>
+    <div
+      className="col-4"
+    />
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-danger"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-trash"
+        />
+         Discard
+      </button>
+    </div>
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-success"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-save"
+        />
+         Submit
+      </button>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Students 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-9"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Goals 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h4
+        className="studentName"
+      >
+         Student 
+        1
+         
+      </h4>
+    </div>
+    <div
+      className="col-11"
+    >
+      <div
+        className="goalsCarousel carousel slide"
+        onKeyDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <div
+          className="carousel-inner"
+        >
+          <div
+            className="carousel-item active carousel-item"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <h4
+                    className="goalNum"
+                  >
+                     Goal 
+                    1
+                     
+                  </h4>
+                </div>
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                />
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-check"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-circle-o"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-times"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          className="carousel-control-prev"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-left carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-right carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshots New student row when have 2 students 1`] = `
+<div
+  className="container"
+  id="dataContainer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        sally
+         
+        foreman
+         
+      </h3>
+    </div>
+    <div
+      className="col-2"
+    >
+      <h3
+        className="nameLocation"
+      >
+         
+        testroom1
+         
+      </h3>
+    </div>
+    <div
+      className="col-4"
+    />
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-danger"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-trash"
+        />
+         Discard
+      </button>
+    </div>
+    <div
+      className="col-1"
+    >
+      <button
+        className="endButton btn btn-outline-success"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="fa fa-save"
+        />
+         Submit
+      </button>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Students 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+    <div
+      className="col-9"
+    >
+      <h3
+        className="dataColHdr"
+      >
+         Goals 
+      </h3>
+    </div>
+    <div
+      className="col-1"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1"
+    >
+      <h4
+        className="studentName"
+      >
+         Student 
+        1
+         
+      </h4>
+    </div>
+    <div
+      className="col-11"
+    >
+      <div
+        className="goalsCarousel carousel slide"
+        onKeyDown={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <div
+          className="carousel-inner"
+        >
+          <div
+            className="carousel-item active carousel-item"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <h4
+                    className="goalNum"
+                  >
+                     Goal 
+                    1
+                     
+                  </h4>
+                </div>
+              </div>
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                />
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-check"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-circle-o"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col-3"
+                >
+                  <button
+                    className="goalButton btn btn-light btn-lg"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <i
+                      className="fa fa-3x fa-times"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="col"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          className="carousel-control-prev"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-left carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+        >
+          <i
+            className="fa fa-3x fa-angle-right carouselDirections"
+          />
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -188,7 +188,6 @@ class SessionSetup extends React.Component {
   decrStudentCallback() {
     if (this.state.students.length > STUDENTS_MIN) {
       this.setState({
-        numStudents: this.state.students.length - 1,
         students: this.state.students.slice(0, -1)
       });
     }
@@ -197,7 +196,6 @@ class SessionSetup extends React.Component {
   incrStudentCallback() {
     if (this.state.students.length < STUDENTS_MAX) {
       this.setState({
-        numStudents: this.state.students.length + 1,
         students: this.state.students.concat(
           [new Student(this.state.students.length, this.studentUpdateCb)]
         )
