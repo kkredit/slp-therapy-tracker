@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Add row with session data 1`] = `
+<div
+  className="history"
+>
+  <h1>
+     Session History 
+  </h1>
+  <div
+    className="history-list"
+  >
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-2"
+          >
+            Date
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Time
+          </th>
+          <th
+            className="col-md-3"
+          >
+            Provider
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Location
+          </th>
+          <th
+            className="col-md-3"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="historyRow"
+        >
+          <td
+            className="col-md-2"
+          >
+            4/25/2019
+          </td>
+          <td
+            className="col-md-2"
+          >
+            11:00:37 AM
+          </td>
+          <td
+            className="col-md-3"
+          >
+            sally
+             
+            foreman
+          </td>
+          <td
+            className="col-md-2"
+          >
+            testroom1
+          </td>
+          <td
+            className="col-md-3"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-primary btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-eye"
+                />
+                 View
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshots Initial setup 1`] = `
+<div
+  className="history"
+>
+  <h1>
+     Session History 
+  </h1>
+  <div
+    className="history-list"
+  >
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-2"
+          >
+            Date
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Time
+          </th>
+          <th
+            className="col-md-3"
+          >
+            Provider
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Location
+          </th>
+          <th
+            className="col-md-3"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
+`;

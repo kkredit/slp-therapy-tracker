@@ -61,10 +61,21 @@ describe('Snapshots',()=>{
       new Student(1, null),
     ];
 
-    instance.setState({
-      students: {students}
-    })
-    // expect(instance.state.students.length).toBe(2);
+
+    // Must create new instance, since getDerivedStateFromProps() wipes out direct state db udpates
+    let db = GetTestDb();
+    tree = create(
+      <BrowserRouter>
+        <DataEntry active={true}
+                   students={students}
+                   provider={db.providers[0]}
+                   location={db.locations[0]}
+                   endCallback={null} />
+      </BrowserRouter>
+    )
+    instance = tree.root.findByType(DataEntry)._fiber.stateNode;
+
+    expect(instance.state.students.length).toBe(2);
     expect(tree.toJSON()).toMatchSnapshot();
   })
 
@@ -76,10 +87,20 @@ describe('Snapshots',()=>{
       student.goals.push(new Goal(1));
     });
 
-    instance.setState({
-      students: {students}
-    })
-    // expect(instance.state.students[0].goals.length).toBe(2);
+    // Must create new instance, since getDerivedStateFromProps() wipes out direct state db udpates
+    let db = GetTestDb();
+    tree = create(
+      <BrowserRouter>
+        <DataEntry active={true}
+                   students={students}
+                   provider={db.providers[0]}
+                   location={db.locations[0]}
+                   endCallback={null} />
+      </BrowserRouter>
+    )
+    instance = tree.root.findByType(DataEntry)._fiber.stateNode;
+
+    expect(instance.state.students[0].goals.length).toBe(2);
     expect(tree.toJSON()).toMatchSnapshot();
   })
 })
