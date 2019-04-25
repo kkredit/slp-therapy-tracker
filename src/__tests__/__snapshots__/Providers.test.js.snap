@@ -1,0 +1,541 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Add row with 2nd provider setup 1`] = `
+<div
+  className="providers"
+>
+  <h1>
+     Providers 
+  </h1>
+  <div
+    className="provider-form"
+  >
+    <h3>
+       Create new provider 
+    </h3>
+    <form
+      className=""
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustom01"
+          >
+            First name
+          </label>
+          <input
+            autoComplete="given-name"
+            className="form-control"
+            defaultValue=""
+            id="validationCustom01"
+            name="fname"
+            onChange={[Function]}
+            pattern="[a-zA-Z]{1,20}"
+            placeholder="First"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a name between 1 and 20 characters.
+          </div>
+        </div>
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustom02"
+          >
+            Last name
+          </label>
+          <input
+            autoComplete="family-name"
+            className="form-control"
+            defaultValue=""
+            id="validationCustom02"
+            name="lname"
+            onChange={[Function]}
+            pattern="[a-zA-Z]{1,20}"
+            placeholder="Last"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a name between 1 and 20 characters.
+          </div>
+        </div>
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustomUsername"
+          >
+            Username
+          </label>
+          <input
+            className="form-control"
+            defaultValue=""
+            id="validationCustomUsername"
+            name="username"
+            onChange={[Function]}
+            pattern="[a-zA-Z.0-9]{5,20}"
+            placeholder="Username"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please choose a username between 5 and 20 characters. You may use letters, numbers, and '.'s.
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-12"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustomEmail"
+          >
+            Email
+          </label>
+          <input
+            autoComplete="email"
+            className="form-control"
+            defaultValue=""
+            id="validationCustomEmail"
+            name="email"
+            onChange={[Function]}
+            placeholder="name@example.com"
+            required={true}
+            type="email"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a valid email.
+          </div>
+        </div>
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        <i
+          className="fa fa-plus-square-o"
+        />
+         Create
+      </button>
+    </form>
+  </div>
+  <div
+    className="provider-list"
+  >
+    <h3>
+       Current providers 
+    </h3>
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-2"
+          >
+            First Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Last Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Username
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Email
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="col-md-2"
+          >
+            sally
+          </td>
+          <td
+            className="col-md-2"
+          >
+            foreman
+          </td>
+          <td
+            className="col-md-2"
+          >
+            testusername
+          </td>
+          <td
+            className="col-md-2"
+          >
+            sf@mail.org
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="col-md-2"
+          >
+            michael
+          </td>
+          <td
+            className="col-md-2"
+          >
+            boss
+          </td>
+          <td
+            className="col-md-2"
+          >
+            testusername2
+          </td>
+          <td
+            className="col-md-2"
+          >
+            mb@mail.org
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshots Initial setup 1`] = `
+<div
+  className="providers"
+>
+  <h1>
+     Providers 
+  </h1>
+  <div
+    className="provider-form"
+  >
+    <h3>
+       Create new provider 
+    </h3>
+    <form
+      className=""
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustom01"
+          >
+            First name
+          </label>
+          <input
+            autoComplete="given-name"
+            className="form-control"
+            defaultValue=""
+            id="validationCustom01"
+            name="fname"
+            onChange={[Function]}
+            pattern="[a-zA-Z]{1,20}"
+            placeholder="First"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a name between 1 and 20 characters.
+          </div>
+        </div>
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustom02"
+          >
+            Last name
+          </label>
+          <input
+            autoComplete="family-name"
+            className="form-control"
+            defaultValue=""
+            id="validationCustom02"
+            name="lname"
+            onChange={[Function]}
+            pattern="[a-zA-Z]{1,20}"
+            placeholder="Last"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a name between 1 and 20 characters.
+          </div>
+        </div>
+        <div
+          className="form-group col-md-4"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustomUsername"
+          >
+            Username
+          </label>
+          <input
+            className="form-control"
+            defaultValue=""
+            id="validationCustomUsername"
+            name="username"
+            onChange={[Function]}
+            pattern="[a-zA-Z.0-9]{5,20}"
+            placeholder="Username"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please choose a username between 5 and 20 characters. You may use letters, numbers, and '.'s.
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-12"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationCustomEmail"
+          >
+            Email
+          </label>
+          <input
+            autoComplete="email"
+            className="form-control"
+            defaultValue=""
+            id="validationCustomEmail"
+            name="email"
+            onChange={[Function]}
+            placeholder="name@example.com"
+            required={true}
+            type="email"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please enter a valid email.
+          </div>
+        </div>
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        <i
+          className="fa fa-plus-square-o"
+        />
+         Create
+      </button>
+    </form>
+  </div>
+  <div
+    className="provider-list"
+  >
+    <h3>
+       Current providers 
+    </h3>
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-2"
+          >
+            First Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Last Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Username
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Email
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="col-md-2"
+          >
+            sally
+          </td>
+          <td
+            className="col-md-2"
+          >
+            foreman
+          </td>
+          <td
+            className="col-md-2"
+          >
+            testusername
+          </td>
+          <td
+            className="col-md-2"
+          >
+            sf@mail.org
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

@@ -1,0 +1,298 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Add row with 2nd location setup 1`] = `
+<div
+  className="locations"
+>
+  <h1>
+     Locations 
+  </h1>
+  <div
+    className="location-form"
+  >
+    <h3>
+       Create new location 
+    </h3>
+    <form
+      className=""
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-12"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationLocationName"
+          >
+            Location name
+          </label>
+          <input
+            className="form-control"
+            defaultValue=""
+            id="validationLocationName"
+            name="name"
+            onChange={[Function]}
+            pattern="[a-zA-Z.0-9 ]{3,60}"
+            placeholder="Room 5"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please choose a name between 3 and 60 characters. You may use letters, numbers, and '.'s.
+          </div>
+        </div>
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        <i
+          className="fa fa-plus-square-o"
+        />
+         Create
+      </button>
+    </form>
+  </div>
+  <div
+    className="location-list"
+  >
+    <h3>
+       Current locations 
+    </h3>
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-10"
+          >
+            Location Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="col-md-10"
+          >
+            testroom1
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            className="col-md-10"
+          >
+            testroom2
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Snapshots Initial setup 1`] = `
+<div
+  className="locations"
+>
+  <h1>
+     Locations 
+  </h1>
+  <div
+    className="location-form"
+  >
+    <h3>
+       Create new location 
+    </h3>
+    <form
+      className=""
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-12"
+        >
+          <label
+            className="form-label"
+            htmlFor="validationLocationName"
+          >
+            Location name
+          </label>
+          <input
+            className="form-control"
+            defaultValue=""
+            id="validationLocationName"
+            name="name"
+            onChange={[Function]}
+            pattern="[a-zA-Z.0-9 ]{3,60}"
+            placeholder="Room 5"
+            required={true}
+            type="text"
+          />
+          <div
+            className="invalid-feedback"
+          >
+            Please choose a name between 3 and 60 characters. You may use letters, numbers, and '.'s.
+          </div>
+        </div>
+      </div>
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="submit"
+      >
+        <i
+          className="fa fa-plus-square-o"
+        />
+         Create
+      </button>
+    </form>
+  </div>
+  <div
+    className="location-list"
+  >
+    <h3>
+       Current locations 
+    </h3>
+    <table
+      className="table table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            className="col-md-10"
+          >
+            Location Name
+          </th>
+          <th
+            className="col-md-2"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            className="col-md-10"
+          >
+            testroom1
+          </td>
+          <td
+            className="col-md-2"
+          >
+            <div
+              aria-label="CRUD buttons"
+              className="btn-group"
+              role="group"
+            >
+              <button
+                className="btn btn-info btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-edit"
+                />
+                 Edit
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <i
+                  className="fa fa-trash-o"
+                />
+                 Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
