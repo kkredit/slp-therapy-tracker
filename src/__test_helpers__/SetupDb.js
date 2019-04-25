@@ -18,8 +18,21 @@ export default function GetTestDb() {
     updatedCb: dbUpdatedCb,
   });
 
-  db.locations = [];
-  db.providers = [];
+  db.locations = [
+    {
+      name: "testroom1",
+      id: 1,
+    },
+  ];
+  db.providers = [
+    {
+      username: "testusername",
+      fname: "sally",
+      lname: "foreman",
+      email: "sf@mail.org",
+      id: 1,
+    },
+  ];
   db.sessions = [];
   db.students = [];
   db.goals = [];

@@ -16,38 +16,41 @@ it('renders without crashing', () => {
 });
 
 describe('Snapshots',()=>{
-  test('Initial setup', () => {
-    let tree = create(
+  var tree;
+  var instance;
+
+  beforeEach(() => {
+    let db = GetTestDb();
+
+    tree = create(
       <BrowserRouter>
-        <Session db={GetTestDb()} />
+        <Session db={db} />
       </BrowserRouter>
     )
+    instance = tree.root.findByType(Session)._fiber.stateNode;
+
+    instance.setState({
+      alertActive: false,
+      alertVariant: '',
+      alertText: '',
+      provider: db.providers[0],
+      location: db.locations[0],
+      inSetup: true,
+      students: []
+    });
+  });
+
+  afterEach(() => {
+    tree = null;
+    instance = null;
+  });
+
+  test('Initial setup', () => {
     expect(tree.toJSON()).toMatchSnapshot();
   })
 
   test('Blank data entry when inSetup is false', () => {
-    let tree = create(
-      <BrowserRouter>
-        <Session db={GetTestDb()} />
-      </BrowserRouter>
-    )
-    let instance = tree.root.findByType(Session)._fiber.stateNode;
-    instance.state.inSetup = false;
+    instance.setState({inSetup: false});
     expect(tree.toJSON()).toMatchSnapshot();
   })
-})
-
-describe("Loading screen should give way to the app", () => {
-
-  // test('Simulate loading the db', () => {
-  //   let tree = create(<App />);
-  //   let instance = tree.getInstance();
-  //   expect(tree.toJSON()).toMatchSnapshot();
-  //
-  //   expect(instance.state.dbLoaded).toBe(false);
-  //   instance.dbInitialLoadCb();
-  //   expect(instance.state.dbLoaded).toBe(true);
-  //
-  //   expect(tree.toJSON()).toMatchSnapshot();
-  // })
 })
