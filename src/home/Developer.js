@@ -11,7 +11,7 @@ class Developer extends React.Component {
 
         <h3 className="subheader">About</h3>
         <p>
-          Kevin Kredit wrote this application as a part of GVSU's CIS Web Technologies class. The
+          Kevin Kredit wrote this application as a part of GVSU's CIS Web Architectures class. The
           project description is available at GVSU's&nbsp;
           <a href="https://cis.gvsu.edu/~kurmasz/Teaching/Courses/W19/CIS658/project.html">
             website
